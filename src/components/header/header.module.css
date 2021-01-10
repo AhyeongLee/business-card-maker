@@ -1,0 +1,20 @@
+.container {
+  position: relative;
+  background-color: #eee;
+  padding: 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo_image {
+  width: 3rem;
+  height: auto;
+}
+.logo_title {
+  font-size: 2rem;
+  margin-top: 0.5em;
+}
+.logout_btn {
+  position: absolute;
+  right: 3rem;
+}
