@@ -1,0 +1,25 @@
+:root {
+  --screen-padding: 1em 1.5em;
+  --screen-padding-right: 1.5em;
+
+  --logo_title-font-size: 1.8rem;
+  --logo_title-margin-top: 0.5em;
+  --logout_btn-top: 1.5em;
+  --logout_btn-after-color: rgb(230, 56, 56);
+
+  --editor-title-font-size: 1.6rem;
+
+  --edit_form-input-width: 100%;
+  --edit_form-input-height: 2.5em;
+  --edit_form-input-font-size: 1rem;
+  --edit_form-border-radius: 8px;
+
+  --card-photo_container-size: 22%;
+  --card-name-margin-top: 2%;
+  --card-name-font-size: 4%;
+  --card-role-font-size: 2.5%;
+  --card-role-margin-top: 1%;
+  --card-email-font-size: 3%;
+  --card-descriptions-font-size: 2.8%;
+  --card-back-margin: 2%;
+}
