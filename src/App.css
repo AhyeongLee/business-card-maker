@@ -7,4 +7,5 @@ body {
     rgba(233, 120, 120, 1) 50%,
     rgb(168, 121, 121) 100%
   );
+  overflow-x: hidden;
 }

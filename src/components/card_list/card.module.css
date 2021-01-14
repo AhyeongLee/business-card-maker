@@ -7,8 +7,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   margin: 1em;
-  perspective: 700px;
+  perspective: 1000px;
 }
 .container:before {
   content: "";
@@ -24,10 +25,10 @@
     transform: rotateY(0);
   }
   25% {
-    transform: rotateY(-15deg);
+    transform: rotateY(-5deg);
   }
   50% {
-    transform: rotateY(15deg);
+    transform: rotateY(5deg);
   }
   100% {
     transform: rotateY(0);
@@ -43,8 +44,34 @@
   align-items: center;
   justify-content: center;
   background-color: white;
-  border: 1px solid var(--color-light-grey);
   border-radius: var(--edit_form-border-radius);
+  transform: rotateY(0);
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+.front.over {
+  animation: hover_front 0.8s ease;
+}
+#black .front {
+  background-color: var(--color-black);
+  color: white;
+}
+#green .front {
+  color: green;
+}
+#gradient .front {
+  background: rgb(232, 173, 162);
+  background: linear-gradient(
+    90deg,
+    rgba(232, 173, 162, 1) 2%,
+    rgba(123, 246, 243, 1) 100%
+  );
+}
+.front.flipped {
+  transform: rotateY(-180deg);
+}
+.front.flipped:hover {
+  animation: none;
 }
 
 .back {
@@ -61,13 +88,22 @@
   background-color: var(--color-red);
   border-radius: var(--edit_form-border-radius);
 }
-
-.front:hover {
-  cursor: pointer;
-  animation: hover_front 0.6s ease;
+#black .back {
+  background-color: white;
+  color: black;
 }
+#green .back {
+  background-color: green;
+  color: white;
+}
+#gradient .back {
+  background-color: white;
+}
+
 .photo_container {
   width: var(--card-photo_container-size);
+  background-color: white;
+  border-radius: 50%;
 }
 .photo {
   width: 100%;
@@ -79,12 +115,12 @@
   margin-top: var(--card-name-margin-top);
   font-size: var(--card-name-font-size);
 }
-.role {
+.company {
   font-size: var(--card-role-font-size);
   margin-top: var(--card-role-margin-top);
 }
 
-.company {
+.role {
   font-size: var(--card-name-font-size);
   margin: var(--card-back-margin) 0;
 }

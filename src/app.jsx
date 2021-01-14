@@ -31,6 +31,19 @@ const App = () => {
     },
   ]);
 
+  const handleAddBtn = () => {
+    console.log('test');
+    const newCards = [...cards, {
+      key: getUUID(), 
+      name: 'Name', 
+      company: 'Company',
+      role: 'Role',
+      email: 'aaa@aa.com',
+      descriptions: 'descriptions',
+      theme: 'default',
+    }];
+    setCards(newCards);
+  }
   const handleChangeInput = (property, key, value) => {
     const newCards = [...cards];
     setCards(newCards.map(card => {
@@ -46,7 +59,7 @@ const App = () => {
   return (
     <>
       <div className="background"></div>
-      <Main cards={cards} onChangeInput={handleChangeInput}/>
+      <Main cards={cards} onChangeInput={handleChangeInput} onAddBtn={handleAddBtn}/>
     </>
   );
 }

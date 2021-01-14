@@ -37,6 +37,7 @@
 }
 .radio_btn.checked {
   background-color: var(--color-red);
+  border: none;
 }
 .radio_btn {
   position: relative;
@@ -45,6 +46,7 @@
   height: 1.5em;
   border-radius: 50%;
   background-color: var(--color-light-gray);
+  border: 1px solid var(--color-gray);
   margin-bottom: 0.5em;
   cursor: pointer;
 }

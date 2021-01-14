@@ -1,13 +1,17 @@
 import React, { useRef, useState } from 'react';
 import styles from './edit_form.module.css';
 
-const themes = ['default', 'black'];
+const themes = ['default', 'black', 'green', 'gradient'];
 const EditForm = (props) => {
+
 
     const handleChangeInput = (e) => {
         props.onChangeInput(e.target.name, e.target.value);
     }
     
+    const handleRadioBtn = (e) => {
+        e.target.dataset.for && props.onChangeInput('theme', e.target.dataset.for);
+    }
 
     return (
     <>
@@ -34,14 +38,14 @@ const EditForm = (props) => {
             </div>
             <div className={styles.theme}>
                 <div className={styles.label}>Card Theme</div>
-                <div className={styles.radios}>
+                <div className={styles.radios} onClick={handleRadioBtn}>
                     {
                         themes.map(theme => {
                             if(theme === props.card.theme) {
                                 return (
                                     <div className={styles.radio_container}>
                                         <div className={`${styles.radio_btn} ${styles.checked}`} data-for={theme}></div>
-                                        <label className={styles.label}>{theme}</label>
+                                        <label className={styles.label} data-for={theme}>{theme}</label>
                                     </div>
                                 )
                             }

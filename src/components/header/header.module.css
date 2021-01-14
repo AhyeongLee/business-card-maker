@@ -21,6 +21,31 @@
   box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.5);
   filter: blur(10px);
 }
+.contents {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add_container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-black);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  cursor: pointer;
+}
+.add_btn {
+  font-size: 1.5rem;
+  color: var(--color-light-gray);
+}
 .logo_image {
   width: 3rem;
   height: auto;
@@ -34,8 +59,8 @@
 }
 .btn {
   position: absolute;
-  right: var(--screen-padding-right);
-  top: var(--logout_btn-top);
+  right: 0;
+  top: 0;
   z-index: 1;
 }
 .logout_btn {
@@ -69,4 +94,24 @@
 
 .logout_btn:hover:after {
   transform: rotateX(0deg);
+}
+
+@media screen and (min-width: 600px) {
+  .contents {
+    width: 80%;
+  }
+  .add_container {
+    left: 0;
+    top: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    transform: translate(0, -50%);
+  }
+  .add_btn {
+    font-size: 2rem;
+  }
+  .btn {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
 }
