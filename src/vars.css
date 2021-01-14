@@ -1,11 +1,15 @@
 :root {
+  --color-light-gray: #d9d9d9;
+  --color-red: rgb(230, 56, 56);
+  --color-black: #0d0b0c;
+  --color-gray: #737373;
+
   --screen-padding: 1em 1.5em;
   --screen-padding-right: 1.5em;
 
   --logo_title-font-size: 1.8rem;
   --logo_title-margin-top: 0.5em;
   --logout_btn-top: 1.5em;
-  --logout_btn-after-color: rgb(230, 56, 56);
 
   --editor-title-font-size: 1.6rem;
 
@@ -14,12 +18,21 @@
   --edit_form-input-font-size: 1rem;
   --edit_form-border-radius: 8px;
 
-  --card-photo_container-size: 22%;
-  --card-name-margin-top: 2%;
-  --card-name-font-size: 4%;
-  --card-role-font-size: 2.5%;
-  --card-role-margin-top: 1%;
-  --card-email-font-size: 3%;
-  --card-descriptions-font-size: 2.8%;
-  --card-back-margin: 2%;
+  --card-photo_container-size: 20vw;
+  --card-name-margin-top: 2vw;
+  --card-name-font-size: 4vw;
+  --card-role-font-size: 2.5vw;
+  --card-role-margin-top: 1vw;
+  --card-email-font-size: 3vw;
+  --card-descriptions-font-size: 2.8vw;
+  --card-back-margin: 2vw;
+
+  --card-photo_container-size-l: 10vw;
+  --card-name-margin-top-l: 1vw;
+  --card-name-font-size-l: 2vw;
+  --card-role-font-size-l: 1.75vw;
+  --card-role-margin-top-l: 0.5vw;
+  --card-email-font-size-l: 1.5vw;
+  --card-descriptions-font-size-l: 1.4vw;
+  --card-back-margin-l: 1vw;
 }
