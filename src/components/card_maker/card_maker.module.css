@@ -19,14 +19,67 @@
   left: 0;
   background: inherit;
   position: absolute;
-
+  /* Blur effect */
   box-shadow: inset 0 0 0 500px rgba(255, 255, 255, 0.2);
   filter: blur(10px);
+}
+.delete_container {
+  position: relative;
+  transform: translateY(50%);
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: var(--color-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+.delete_container:hover {
+  background-color: var(--color-red);
+}
+.delete_btn {
+  color: var(--color-light-gray);
+  font-size: 1.2em;
+}
+.delete_container:after {
+  content: "";
+  position: absolute;
+  width: 250%;
+  height: 1em;
+  transform: rotate(-45deg) translate(-1em, -2em);
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  transition: transform 0.5s ease;
+}
+.delete_container:hover:after {
+  transform: rotate(-45deg) translate(1em, 2em);
+}
+.delete_container:before {
+  content: "";
+  position: absolute;
+  width: 250%;
+  height: 1em;
+  transform: rotate(-45deg) translate(-1em, -2em);
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  transition: transform 0.5s ease;
+  transition-delay: 0.1s;
+}
+.delete_container:hover:before {
+  transform: rotate(-45deg) translate(1em, 2em);
 }
 @media screen and (min-width: 1080px) {
   .container {
     margin: var(--screen-padding-l);
     flex-direction: row;
     justify-content: space-around;
+  }
+  .delete_container {
+    transform: translateX(50%);
+    flex: 0 0 1.5em;
   }
 }

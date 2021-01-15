@@ -2,23 +2,56 @@ import React, { useRef } from 'react';
 import styles from './card.module.css';
 import imgSrc from '../header/business-cards.png';
 
-const Card = ({ card }) => {
+
+const Card = ({ card, onChangeInput }) => {
     const frontRef = useRef();
+    const imageRef = useRef();
+    const inputFileRef = useRef();
+
+    const uploadImage = () => {
+        console.log(inputFileRef.current);
+        inputFileRef.current.click();
+    }
 
     const handleClickCard = (e) => {
-        console.log(e.target);
-        if (e.target.closest(`#${frontRef.current.id}`)) {
-            console.log(frontRef.current.id);
+        const target = e.target;
+        if (target.closest(`#${imageRef.current.id}`) || target === imageRef.current) {
+            uploadImage();
+            return;
+        }
+        if (target.closest(`#${frontRef.current.id}`) || target === frontRef.current) {
             frontRef.current.classList.toggle(styles.flipped);
         }
     }
 
+    const handleImageChange = (e) => {
+        const files = e.target.files;
+        if (files.length === 0) return;
+        
+        console.log(files[0]);
+        const reader = new FileReader();
+        reader.addEventListener("load", function () {
+            console.log(imageRef.current.firstChild);
+            onChangeInput('photo', reader.result);
+            // imageRef.current.firstChild.src = reader.result;
+        }, false);
+    
+        reader.readAsDataURL(files[0]);
+        
+    }
+
     return (
     <div className={styles.container} id={styles[card.theme]}>
+        <input 
+            ref={inputFileRef} 
+            className={styles.input_file} 
+            type="file" name="" id="" 
+            accept="image/png, image/jpeg"
+            onChange={e => {handleImageChange(e)}}/>
         <div className={styles.background}></div>
         <div ref={frontRef} className={styles.front} id="flip" onClick={handleClickCard} >
-            <div className={styles.photo_container}>
-                <img src={imgSrc} alt="photo" className={styles.photo}/>
+            <div ref={imageRef} className={styles.photo_container} id="card-image">
+                <img src={card.photo} alt="photo" className={styles.photo}/>
             </div>
             <h1 className={styles.name}>{card.name}</h1>
             <p className={styles.company}>{card.company}</p>

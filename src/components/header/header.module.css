@@ -1,6 +1,8 @@
 @import "../../vars.css";
 
 .container {
+  height: 80px;
+  flex: 0 0 80px;
   position: relative;
   padding: var(--screen-padding);
   border-bottom: 1px solid var(--color-black);
@@ -18,6 +20,7 @@
   left: 0;
   background: inherit;
   position: absolute;
+  /* Blur effect */
   box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.5);
   filter: blur(10px);
 }
@@ -30,13 +33,13 @@
 }
 
 .add_container {
-  position: absolute;
+  position: fixed;
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
   background-color: var(--color-black);
-  bottom: 0;
-  right: 0;
+  top: 1em;
+  right: var(--screen-padding-right);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,21 +61,21 @@
   position: absolute;
   width: 250%;
   height: 1em;
-  transform: translate(-100%, 120%) rotate(-45deg);
+  transform: rotate(-45deg) translate(-1em, -2em);
   top: 0;
   bottom: 0;
   background-color: white;
   transition: transform 0.5s ease;
 }
 .add_container:hover:after {
-  transform: translate(100%, 150%) rotate(-45deg);
+  transform: rotate(-45deg) translate(1em, 3em);
 }
 .add_container:before {
   content: "";
   position: absolute;
   width: 250%;
   height: 1em;
-  transform: translate(-100%, 120%) rotate(-45deg);
+  transform: rotate(-45deg) translate(-1em, -2em);
   top: 0;
   bottom: 0;
   background-color: white;
@@ -80,7 +83,7 @@
   transition-delay: 0.1s;
 }
 .add_container:hover:before {
-  transform: translate(100%, 150%) rotate(-45deg);
+  transform: rotate(-45deg) translate(1em, 3em);
 }
 .logo_image {
   width: 3rem;
@@ -95,7 +98,7 @@
 }
 .logout_container {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
   z-index: 1;
 }
@@ -136,15 +139,15 @@
   .container {
     padding: var(--screen-padding-l);
   }
+  .add_container {
+    right: var(--screen-padding-right-l);
+  }
 }
 
 @media screen and (min-width: 600px) {
   .add_container {
-    left: 0;
-    top: 50%;
     width: 2.5rem;
     height: 2.5rem;
-    transform: translate(0, -50%);
   }
   .add_btn {
     font-size: 2rem;

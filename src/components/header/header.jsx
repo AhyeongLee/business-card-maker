@@ -9,6 +9,11 @@ const Header = (props) => {
     const handleAddBtn = (e) => {
         if (e.target.closest(`#${addRef.current.id}`)) {
             props.onAddBtn();
+            setTimeout(() => {
+                window.scroll({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+              })}, 200);
         }
         
     }
