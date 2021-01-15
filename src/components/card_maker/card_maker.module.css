@@ -2,8 +2,6 @@
 
 .container {
   position: relative;
-  width: 80%;
-  padding: var(--screen-padding);
   margin: var(--screen-padding);
   border-radius: var(--edit_form-border-radius);
   display: flex;
@@ -27,13 +25,8 @@
 }
 @media screen and (min-width: 1080px) {
   .container {
+    margin: var(--screen-padding-l);
     flex-direction: row;
     justify-content: space-around;
-  }
-}
-@media screen and (min-width: 600px) {
-  .container {
-    padding: var(--screen-padding-l);
-    margin: var(--screen-padding-l);
   }
 }

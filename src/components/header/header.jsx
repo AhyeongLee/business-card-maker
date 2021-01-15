@@ -20,7 +20,7 @@ const Header = (props) => {
             </div>
             <img className={styles.logo_image} src={logoImg} alt="logo image"/>
             <h1 className={styles.logo_title}>Business Card Maker</h1>
-            <div className={styles.btn}>
+            <div className={styles.logout_container}>
                 <a className={styles.logout_btn}>Logout</a>
             </div>
         </div>

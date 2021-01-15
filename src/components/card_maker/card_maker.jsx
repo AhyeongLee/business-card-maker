@@ -9,8 +9,8 @@ const CardMaker = (props) => {
     }
     return (
     <div className={styles.container}>
-            <Card card={props.card}/>
-            <EditForm card={props.card} onChangeInput={handleChangeInput}/>
+            <Card key="card" card={props.card}/>
+            <EditForm key="edit_form" card={props.card} onChangeInput={handleChangeInput}/>
     </div>            
 )};
 

@@ -16,7 +16,7 @@ const EditForm = (props) => {
     return (
     <>
         <div className={styles.container}>
-            <div className={styles.name}>
+            <div className={`${styles.name} ${styles.input_container}`}>
                 <label htmlFor="name" className={styles.label}>Name</label>
                 <input onChange={handleChangeInput} value={props.card.name} type="text" name="name" className={styles.input} />
             </div>
@@ -39,28 +39,27 @@ const EditForm = (props) => {
             <div className={styles.theme}>
                 <div className={styles.label}>Card Theme</div>
                 <div className={styles.radios} onClick={handleRadioBtn}>
-                    {
-                        themes.map(theme => {
-                            if(theme === props.card.theme) {
-                                return (
-                                    <div className={styles.radio_container}>
-                                        <div className={`${styles.radio_btn} ${styles.checked}`} data-for={theme}></div>
-                                        <label className={styles.label} data-for={theme}>{theme}</label>
-                                    </div>
-                                )
-                            }
-                            else {
-                                return (
-                                    <div className={styles.radio_container}>
-                                        <div className={styles.radio_btn} data-for={theme}></div>
-                                        <label className={styles.label}>{theme}</label>
-                                    </div>
-                                )
-                            }
-                            
-                        })
-                    }
-                    
+                {
+                    themes.map(theme => {
+                        if(theme === props.card.theme) {
+                            return (
+                                <div key={`${props.card.key}-${theme}`} className={styles.radio_container}>
+                                    <div className={`${styles.radio_btn} ${styles.checked}`} data-for={theme}></div>
+                                    <label className={styles.label} data-for={theme}>{theme}</label>
+                                </div>
+                            )
+                        }
+                        else {
+                            return (
+                                <div key={`${props.card.key}-${theme}`} className={styles.radio_container}>
+                                    <div className={styles.radio_btn} data-for={theme}></div>
+                                    <label className={styles.label}>{theme}</label>
+                                </div>
+                            )
+                        }
+                        
+                    })
+                }
                 </div>
             </div>
         </div>

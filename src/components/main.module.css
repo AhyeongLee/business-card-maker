@@ -3,5 +3,5 @@
 .card_makers {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }

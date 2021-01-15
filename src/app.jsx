@@ -35,11 +35,11 @@ const App = () => {
     console.log('test');
     const newCards = [...cards, {
       key: getUUID(), 
-      name: 'Name', 
-      company: 'Company',
+      name: 'New', 
+      company: 'Business Card',
       role: 'Role',
       email: 'aaa@aa.com',
-      descriptions: 'descriptions',
+      descriptions: 'descriptions...',
       theme: 'default',
     }];
     setCards(newCards);

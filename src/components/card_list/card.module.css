@@ -9,7 +9,7 @@
   justify-content: center;
   box-sizing: border-box;
   margin: 1em;
-  perspective: 1000px;
+  perspective: 2000px;
 }
 .container:before {
   content: "";
@@ -49,9 +49,7 @@
   transition: transform 0.5s ease;
   cursor: pointer;
 }
-.front.over {
-  animation: hover_front 0.8s ease;
-}
+
 #black .front {
   background-color: var(--color-black);
   color: white;
@@ -68,6 +66,7 @@
   );
 }
 .front.flipped {
+  transition: transform 0.5s ease;
   transform: rotateY(-180deg);
 }
 .front.flipped:hover {

@@ -1,9 +1,9 @@
 @import "../../vars.css";
 
 .container {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 80vw;
   margin: 1em;
   z-index: 1;
 }
