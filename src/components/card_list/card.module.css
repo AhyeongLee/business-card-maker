@@ -110,6 +110,11 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  transition: all 0.5s ease;
+}
+.photo.dragover {
+  opacity: 0.3;
+  transform: scale(1.5);
 }
 .photo_container:before {
   font-weight: bolder;
@@ -123,7 +128,7 @@
   justify-content: center;
   align-items: center;
 }
-.photo_container:hover::before {
+.photo_container:hover:before {
   content: "+";
   font-size: 4em;
   background-color: rgba(209, 209, 209, 0.3);

@@ -24,22 +24,37 @@ const Card = ({ card, onChangeInput }) => {
         }
     }
 
-    const handleImageChange = (e) => {
-        const files = e.target.files;
+    const handleImageUpload = (files) => {
+        // const files = e.target.files;
         if (files.length === 0) return;
         
         console.log(files[0]);
         const reader = new FileReader();
         reader.addEventListener("load", function () {
             console.log(imageRef.current.firstChild);
+            // onImageUpload(reader.result);
             onChangeInput('photo', reader.result);
-            // imageRef.current.firstChild.src = reader.result;
         }, false);
     
         reader.readAsDataURL(files[0]);
         
     }
 
+    const handleDragEnter = (e) => {
+        e.preventDefault();
+        e.target.classList.add(styles.dragover);
+    }
+    const handleDragLeave = (e) => {
+        e.preventDefault();
+        e.target.classList.remove(styles.dragover);
+    }
+    const handleDrop = (e) => {
+        e.preventDefault();
+        console.log(e.dataTransfer.files);
+        handleImageUpload(e.dataTransfer.files);
+        e.target.classList.remove(styles.dragover);
+
+    }
     return (
     <div className={styles.container} id={styles[card.theme]}>
         <input 
@@ -47,11 +62,11 @@ const Card = ({ card, onChangeInput }) => {
             className={styles.input_file} 
             type="file" name="" id="" 
             accept="image/png, image/jpeg"
-            onChange={e => {handleImageChange(e)}}/>
+            onChange={e => {handleImageUpload(e.target.files)}}/>
         <div className={styles.background}></div>
         <div ref={frontRef} className={styles.front} id="flip" onClick={handleClickCard} >
-            <div ref={imageRef} className={styles.photo_container} id="card-image">
-                <img src={card.photo} alt="photo" className={styles.photo}/>
+            <div ref={imageRef} className={styles.photo_container} id="card-image" onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDrop={handleDrop} onDragExit={handleDragLeave} onDragStart={e => e.preventDefault()} onDragEnd={handleDragLeave} onDrag={e => e.preventDefault()} onDragOver={e => e.preventDefault()}>
+                <img src={card.photo} alt="photo" className={`${styles.photo} ${styles.dragover}`}/>
             </div>
             <h1 className={styles.name}>{card.name}</h1>
             <p className={styles.company}>{card.company}</p>

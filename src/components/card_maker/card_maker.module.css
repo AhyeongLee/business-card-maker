@@ -2,6 +2,7 @@
 
 .container {
   position: relative;
+  box-sizing: border-box;
   margin: var(--screen-padding);
   border-radius: var(--edit_form-border-radius);
   display: flex;
@@ -23,6 +24,7 @@
   box-shadow: inset 0 0 0 500px rgba(255, 255, 255, 0.2);
   filter: blur(10px);
 }
+
 .delete_container {
   position: relative;
   transform: translateY(50%);

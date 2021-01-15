@@ -5,6 +5,7 @@ import styles from './card_maker.module.css';
 
 const CardMaker = (props) => {
     const deleteRef = useRef();
+    const dropZoneRef = useRef();
 
     const handleChangeInput = (property, value) => {
         props.onChangeInput(property, props.card.key, value);
@@ -14,8 +15,12 @@ const CardMaker = (props) => {
             props.onDeleteCard(props.card.key);
         }
     }
+
+    const handleDropFile = (e) => {
+        console.log(e);
+    }
     return (
-    <div className={styles.container}>
+    <div ref={dropZoneRef} className={styles.container}>
             <div ref={deleteRef} className={styles.delete_container} id="card_maker-delete-btn" onClick={handleDeleteCard} id="card_maker-delete-btn-container">
                 <i className={`fas fa-times ${styles.delete_btn}`}></i>
             </div>
