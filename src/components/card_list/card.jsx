@@ -66,7 +66,7 @@ const Card = ({ card, onChangeInput }) => {
         <div className={styles.background}></div>
         <div ref={frontRef} className={styles.front} id="flip" onClick={handleClickCard} >
             <div ref={imageRef} className={styles.photo_container} id="card-image" onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDrop={handleDrop} onDragExit={handleDragLeave} onDragStart={e => e.preventDefault()} onDragEnd={handleDragLeave} onDrag={e => e.preventDefault()} onDragOver={e => e.preventDefault()}>
-                <img src={card.photo} alt="photo" className={`${styles.photo}`}/>
+                <img src={card.photo ? card.photo : imgSrc} alt="" className={`${styles.photo}`}/>
             </div>
             <h1 className={styles.name}>{card.name}</h1>
             <p className={styles.company}>{card.company}</p>
