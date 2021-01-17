@@ -101,6 +101,7 @@
 .photo_container {
   position: relative;
   width: var(--card-photo_container-size);
+  height: var(--card-photo_container-size);
   background-color: white;
   border-radius: 50%;
   overflow: hidden;
@@ -112,27 +113,12 @@
   object-fit: cover;
   transition: all 0.5s ease;
 }
+.photo:hover,
 .photo.dragover {
   opacity: 0.3;
   transform: scale(1.5);
 }
-.photo_container:before {
-  font-weight: bolder;
-  color: white;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.photo_container:hover:before {
-  content: "+";
-  font-size: 4em;
-  background-color: rgba(209, 209, 209, 0.3);
-}
+
 .name {
   margin-top: var(--card-name-margin-top);
   font-size: var(--card-name-font-size);
@@ -170,6 +156,7 @@
 
   .photo_container {
     width: var(--card-photo_container-size-l);
+    height: var(--card-photo_container-size-l);
   }
   .photo {
     width: 100%;
