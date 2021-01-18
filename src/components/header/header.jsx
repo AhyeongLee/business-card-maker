@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import logoImg from './business-cards.png';
+import logoImg from '../images/business-cards.png';
 import styles from './header.module.css';
+import { Link } from 'react-router-dom';
 
 
 const Header = (props) => {
@@ -23,11 +24,16 @@ const Header = (props) => {
             <div ref={addRef} className={styles.add_container}  onClick={handleAddBtn} id="header-add-btn-container">
                 <i className={`fas fa-plus ${styles.add_btn}`}></i>
             </div>
-            <img className={styles.logo_image} src={logoImg} alt="logo image"/>
+            <img className={styles.logo_image} src={logoImg} alt="logo"/>
             <h1 className={styles.logo_title}>Business Card Maker</h1>
-            <div className={styles.logout_container}>
-                <a className={styles.logout_btn}>Logout</a>
-            </div>
+            
+                <div className={styles.logout_container}>
+                <Link to="/login" className={styles.logout_btn}>
+                    {/* <a className={styles.logout_btn}>Logout</a> */}
+                    Logout
+                </Link>
+                </div>
+            
         </div>
     </header>            
 )};

@@ -1,0 +1,128 @@
+@import "../../vars.css";
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.glass {
+  position: relative;
+  width: 30em;
+  height: 15em;
+  box-sizing: border-box;
+  border-radius: var(--edit_form-border-radius);
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  background: inherit;
+  overflow: hidden;
+}
+.glass:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  background: inherit;
+  position: absolute;
+  /* Blur effect */
+  box-shadow: inset 0 0 0 500px rgba(255, 255, 255, 0.2);
+  filter: blur(5px);
+}
+.logo {
+  position: relative;
+  width: 30em;
+  height: 8em;
+  border-radius: var(--edit_form-border-radius) var(--edit_form-border-radius) 0
+    0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: inherit;
+  overflow: hidden;
+}
+.logo:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  background: inherit;
+  position: absolute;
+  /* Blur effect */
+  box-shadow: inset 0 0 0 500px rgba(255, 255, 255, 0.45);
+  filter: blur(10px);
+}
+.logo_image {
+  width: 3rem;
+  height: auto;
+  z-index: 1;
+}
+.logo_title {
+  color: var(--color-black);
+  font-size: var(--logo_title-font-size);
+  margin-top: var(--logo_title-margin-top);
+  z-index: 1;
+}
+.login_btn {
+  width: 30em;
+  height: 7em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btn_container {
+  box-sizing: border-box;
+  position: relative;
+  width: 13em;
+  height: 2.5em;
+  background-color: var(--color-black);
+  border-radius: 3em;
+  margin: 0.1em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btn_container:after {
+  position: absolute;
+  content: "Login";
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-red);
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3em;
+  transform: rotateX(270deg);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.btn_container:hover:after {
+  transform: rotateX(0deg);
+}
+/* google, github icon */
+.btn_container > svg {
+  position: absolute;
+  left: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-light-gray);
+}
+
+.btn_container div {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-43%);
+  color: var(--color-light-gray);
+}
