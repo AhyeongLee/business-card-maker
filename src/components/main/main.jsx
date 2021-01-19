@@ -32,17 +32,15 @@ const Main = (props) => {
     
       ]);
     const history = useHistory();
-
+    const hasSession = () => {
+        // user setting
+        props.setIsWaiting(false);
+    }
+    const hasNoSession = () => {
+        history.push('/login');
+    }
     useEffect(() => {
-        props.loginService.getGoogleWithRedirect()
-        .then(() => {
-            console.log(props.loginService.token);
-            if (!props.loginService.token) {
-                history.push('/login');
-            } else {
-                props.setIsWaiting(false);
-            }
-        });
+        props.loginService.checkSession(hasSession, hasNoSession);
     }, []);
 
     const handleLogout = () => {

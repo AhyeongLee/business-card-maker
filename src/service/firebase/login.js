@@ -2,10 +2,9 @@ import firebase from "firebase/app";
 import 'firebase/auth';
 
 class Login {
-    constructor(provider) {
-        this.provider = provider;
+    constructor(config) {
+        firebase.initializeApp(config);
         this.token = null;
-        this.user = null;
         this.error = {
             errorCode: null, 
             errorMessage: null, 
@@ -13,10 +12,10 @@ class Login {
             credentail: null
         };
     }
-    loginGoogleWithRedirect = async () => {
+    signInWithRedirect = async (provider) => {
         try {
             await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-            return firebase.auth().signInWithRedirect(this.provider);
+            return firebase.auth().signInWithRedirect(provider);
         } catch (error) {
             this.errorCode = error.code;
             this.errorMessage = error.message;
@@ -29,7 +28,6 @@ class Login {
             if (result.credential) {
                 this.token = result.credential.accessToken;
             }
-            this.user = result.user;
         } catch (error) {
             this.error.errorCode = error.code;
             this.error.errorMessage = error.message;
@@ -41,23 +39,23 @@ class Login {
         try {
             await firebase.auth().signOut();
             this.token = null;
-            this.user = null;
             this.error = {};
         } catch (error) {
             this.errorCode = error.code;
             this.errorMessage = error.message;
         }
     }
-    // isSigned = () => {
-    //     return firebase.auth().onAuthStateChanged(user => {
-    //         if (user) {
-    //             console.log(user);
-    //             return user;
-    //         } else {
-    //             console.log('nope');
-    //         }
-    //     });
-    // }
+    checkSession = (hasSessionFunction, hasNoSessionFunction) => {
+        return firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                console.log(user);
+                hasSessionFunction();
+            } else {
+                console.log('nope');
+                hasNoSessionFunction();
+            }
+        });
+    }
 }
 
 export default Login;

@@ -3,29 +3,37 @@ import logoImg from '../../images/business-cards.png';
 import styles from './login.module.css';
 import { Link, useHistory} from "react-router-dom";
 import Loading from '../loading/loading';
+import firebase from "firebase/app";
+import 'firebase/auth';
 
 const Login = (props) => {
     const history = useHistory();
 
+    const hasSession = () => {
+        history.push('/');
+    }
+    const hasNoSession = () => {
+        props.setIsWaiting(false); 
+    }
     useEffect(() => {
-        props.loginService.getGoogleWithRedirect()
-        .then(() => {
-            console.log(props.loginService.token);
-            if (!props.loginService.token) {
-                props.setIsWaiting(false);
-                return;
-            }
-            history.push('/');
-        });
+        props.loginService.checkSession(hasSession, hasNoSession);
     }, []);
 
-    const handleLoginGoogle = (e) => {
+    const handleLoginGoogle = () => {
         props.setIsWaiting(true);
-        props.loginService.loginGoogleWithRedirect()
+        const provider = new firebase.auth.GoogleAuthProvider();
+        props.loginService.signInWithRedirect(provider)
         .then(() => {
             history.push('/');
         });
-        
+    }
+    const handleLoginGithub = () => {
+        props.setIsWaiting(true);
+        const provider = new firebase.auth.GithubAuthProvider();
+        props.loginService.signInWithRedirect(provider)
+        .then(() => {
+            history.push('/');
+        });
     }
     return (
         <>
@@ -40,11 +48,11 @@ const Login = (props) => {
                 <div className={styles.login_btn}>
                     <div className={styles.btn_container} onClick={handleLoginGoogle}>
                         <i className="fab fa-google-plus-g"></i>
-                        <div>Google</div>
+                        <div>Sign in with Google</div>
                     </div>
-                    <div className={styles.btn_container}>
+                    <div className={styles.btn_container} onClick={handleLoginGithub}>
                         <i className="fab fa-github"></i>
-                        <div>Github</div>
+                        <div>Sign in with Github</div>
                     </div>
                 </div>
             </div>
