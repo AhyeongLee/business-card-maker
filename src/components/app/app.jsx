@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './app.css';
 import Main from '../main/main';
 import {
@@ -10,8 +10,9 @@ import Login from '../login/login';
 
 
 
-const App = () => {
-  
+const App = ({ loginService }) => {
+  const [isWaiting, setIsWaiting] = useState(true);
+
   return (
     <>
     <Router>
@@ -29,10 +30,10 @@ const App = () => {
 
         <Switch>
           <Route path="/login">
-            <Login />
+            <Login loginService={loginService} isWaiting={isWaiting} setIsWaiting={setIsWaiting}/>
           </Route>
           <Route path="/">
-            <Main />
+            <Main loginService={loginService} isWaiting={isWaiting} setIsWaiting={setIsWaiting}/>
           </Route>
         </Switch>
       {/* </div> */}

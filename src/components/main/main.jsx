@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../header/header';
 import CardMaker from '../card_maker/card_maker';
 import styles from './main.module.css';
 import Footer from '../footer/footer';
+import { useHistory } from 'react-router-dom';
+import loadingImg from '../../images/loading.png';
+import Loading from '../loading/loading';
 
 
 const getUUID = () => {
@@ -28,6 +31,33 @@ const Main = (props) => {
         },
     
       ]);
+    const history = useHistory();
+
+    useEffect(() => {
+        props.loginService.getGoogleWithRedirect()
+        .then(() => {
+            console.log(props.loginService.token);
+            if (!props.loginService.token) {
+                history.push('/login');
+            } else {
+                props.setIsWaiting(false);
+            }
+        });
+    }, []);
+
+    const handleLogout = () => {
+        props.setIsWaiting(true);
+        props
+          .loginService
+          .logout()
+          .then(() => {
+              alert('logout');
+              history.push('/login');
+          });
+        
+        
+
+    }
 
     const handleChangeInput = (property, key, value) => {
         const newCards = [...cards];
@@ -59,16 +89,23 @@ const Main = (props) => {
         setCards(newCards);
     }
     return (
-    <div className={styles.main}>
-        <Header onAddBtn={handleAddBtn}/>
-        {/* <MainContent /> */}
-        <ul className={styles.card_makers}>
-            {cards.map(card => {
-               return ( <CardMaker key={card.key} card={card} onChangeInput={handleChangeInput} onDeleteCard={handleDeleteCard}/> );
-            })}
-        </ul>
-        <Footer />
-    </div>            
+        
+        <>
+        {props.isWaiting ? 
+            <Loading /> : 
+            <div className={styles.main}>
+                    <Header onAddBtn={handleAddBtn} onLogout={handleLogout}/>
+                    {/* <MainContent /> */}
+                    <ul className={styles.card_makers}>
+                        {cards.map(card => {
+                        return ( <CardMaker key={card.key} card={card} onChangeInput={handleChangeInput} onDeleteCard={handleDeleteCard}/> );
+                        })}
+                    </ul>
+                    <Footer />
+                
+            </div>           
+            } 
+        </>
 )};
 
 export default Main;

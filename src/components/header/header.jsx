@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import logoImg from '../images/business-cards.png';
+import logoImg from '../../images/business-cards.png';
 import styles from './header.module.css';
 import { Link } from 'react-router-dom';
 
@@ -18,6 +18,9 @@ const Header = (props) => {
         }
         
     }
+    const handleLogout =() => {
+        props.onLogout();
+    }
     return (
     <header className={styles.container}>
         <div className={styles.contents}>
@@ -28,10 +31,10 @@ const Header = (props) => {
             <h1 className={styles.logo_title}>Business Card Maker</h1>
             
                 <div className={styles.logout_container}>
-                <Link to="/login" className={styles.logout_btn}>
-                    {/* <a className={styles.logout_btn}>Logout</a> */}
-                    Logout
-                </Link>
+                {/* <Link to="/login" className={styles.logout_btn}> */}
+                    <a className={styles.logout_btn} onClick={handleLogout}>Logout</a>
+                    {/* Logout */}
+                {/* </Link> */}
                 </div>
             
         </div>
