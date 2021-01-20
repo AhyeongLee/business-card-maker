@@ -18,36 +18,24 @@ const getUUID = () => {
 
 const Main = (props) => {
 
-    const [cards, setCards] = useState([
-        {
-          key: getUUID(),
-          photo: '',
-          name: 'Tester1',
-          company: 'Google',
-          role: 'Front-end Developer',
-          email: 'aaaa@google.com',
-          descriptions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti omnis delectus',
-          theme: 'default',
-        },
-    
-      ]);
+    const [cards, setCards] = useState([]);
     const history = useHistory();
-    const hasSession = () => {
-        // user setting
-        props.setIsWaiting(false);
-    }
-    const hasNoSession = () => {
-        history.push('/login');
-    }
     useEffect(() => {
-        props.loginService.checkSession(hasSession, hasNoSession);
+        console.log('test');
+        const user = props.loginService.getCurrentUser();
+        console.log(user);
+        if (user) {
+            props.setIsWaiting(false);
+            props.databaseService.readCards(user.uid, setCards);
+        } else {
+            history.push('/login');
+        }
+        
     }, []);
 
     const handleLogout = () => {
         props.setIsWaiting(true);
-        props
-          .loginService
-          .logout()
+        props.loginService.logout()
           .then(() => {
               alert('logout');
               history.push('/login');
@@ -58,6 +46,7 @@ const Main = (props) => {
     }
 
     const handleChangeInput = (property, key, value) => {
+        props.databaseService.updateCard(props.loginService.getCurrentUser().uid, property, key, value);
         const newCards = [...cards];
         setCards(newCards.map(card => {
         if(card.key === key) {
@@ -69,17 +58,22 @@ const Main = (props) => {
         }));
     }
     const handleAddBtn = () => {
-        const newCards = [...cards, {
-            key: getUUID(), 
-            name: 'New', 
-            company: 'Business Card',
-            role: 'Role',
-            email: 'aaa@aa.com',
+        const newCard = {
+            // key: getUUID(), 
+            name: 'Gildong Hong', 
+            company: 'Notte',
+            role: 'Document Generator',
+            email: 'aaa@notte.com',
             descriptions: 'descriptions...',
             theme: 'default',
-          }];
-          setCards(newCards);
-          
+          };
+        props.databaseService.writeNewCard(props.loginService.user.uid, newCard)
+        .then(() => {
+            const newCards = [...cards, newCard];
+            setCards(newCards);
+        });
+            
+
     }
 
     const handleDeleteCard = (key) => {

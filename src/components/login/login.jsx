@@ -3,8 +3,6 @@ import logoImg from '../../images/business-cards.png';
 import styles from './login.module.css';
 import { Link, useHistory} from "react-router-dom";
 import Loading from '../loading/loading';
-import firebase from "firebase/app";
-import 'firebase/auth';
 
 const Login = (props) => {
     const history = useHistory();
@@ -21,7 +19,7 @@ const Login = (props) => {
 
     const handleLoginGoogle = () => {
         props.setIsWaiting(true);
-        const provider = new firebase.auth.GoogleAuthProvider();
+        const provider = props.loginService.getGoogleAuthProvider();
         props.loginService.signInWithRedirect(provider)
         .then(() => {
             history.push('/');
@@ -29,7 +27,7 @@ const Login = (props) => {
     }
     const handleLoginGithub = () => {
         props.setIsWaiting(true);
-        const provider = new firebase.auth.GithubAuthProvider();
+        const provider = props.loginService.getGithubAuthProvider();
         props.loginService.signInWithRedirect(provider)
         .then(() => {
             history.push('/');

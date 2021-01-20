@@ -9,9 +9,11 @@
 }
 .label {
   font-weight: 600;
+  font-size: 0.8em;
+  margin-bottom: 0.3em;
 }
 .input {
-  margin-bottom: 1em;
+  margin-bottom: 0.6em;
   padding: 0em 1em;
   width: var(--edit_form-input-width);
   height: var(--edit_form-input-height);

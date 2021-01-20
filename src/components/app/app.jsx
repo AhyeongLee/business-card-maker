@@ -10,30 +10,19 @@ import Login from '../login/login';
 
 
 
-const App = ({ loginService }) => {
+
+const App = ({ loginService, databaseService }) => {
   const [isWaiting, setIsWaiting] = useState(true);
 
   return (
     <>
     <Router>
-      {/* <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Main</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </ul>
-        </nav> */}
-
         <Switch>
           <Route path="/login">
             <Login loginService={loginService} isWaiting={isWaiting} setIsWaiting={setIsWaiting}/>
           </Route>
           <Route path="/">
-            <Main loginService={loginService} isWaiting={isWaiting} setIsWaiting={setIsWaiting}/>
+            <Main loginService={loginService} databaseService={databaseService} isWaiting={isWaiting} setIsWaiting={setIsWaiting}/>
           </Route>
         </Switch>
       {/* </div> */}

@@ -1,10 +1,11 @@
-import firebase from "firebase/app";
 import 'firebase/auth';
 
 class Login {
-    constructor(config) {
-        firebase.initializeApp(config);
+    constructor(firebase) {
+        // firebase.initializeApp(config);
+        this.firebase = firebase;
         this.token = null;
+        this.user = null;
         this.error = {
             errorCode: null, 
             errorMessage: null, 
@@ -14,8 +15,8 @@ class Login {
     }
     signInWithRedirect = async (provider) => {
         try {
-            await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-            return firebase.auth().signInWithRedirect(provider);
+            await this.firebase.auth().setPersistence(this.firebase.auth.Auth.Persistence.SESSION);
+            return this.firebase.auth().signInWithRedirect(provider);
         } catch (error) {
             this.errorCode = error.code;
             this.errorMessage = error.message;
@@ -24,10 +25,11 @@ class Login {
     getGoogleWithRedirect = async () => {
         console.log('getGoogleWithRedirect');
         try {
-            const result = await firebase.auth().getRedirectResult();
+            const result = await this.firebase.auth().getRedirectResult();
             if (result.credential) {
                 this.token = result.credential.accessToken;
             }
+            this.user = result.user;
         } catch (error) {
             this.error.errorCode = error.code;
             this.error.errorMessage = error.message;
@@ -35,27 +37,33 @@ class Login {
             this.error.credentail = error.credentail;
         }
     }
+    getCurrentUser = () => {
+        return this.firebase.auth().currentUser;
+    }
     logout = async () => {
         try {
-            await firebase.auth().signOut();
+            await this.firebase.auth().signOut();
             this.token = null;
+            this.user = null;
             this.error = {};
         } catch (error) {
             this.errorCode = error.code;
             this.errorMessage = error.message;
         }
     }
-    checkSession = (hasSessionFunction, hasNoSessionFunction) => {
-        return firebase.auth().onAuthStateChanged(user => {
+    checkSession = async (hasSessionFunction, hasNoSessionFunction) => {
+        await this.firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                console.log(user);
+                this.user = user;
                 hasSessionFunction();
             } else {
-                console.log('nope');
+                this.user = null;
                 hasNoSessionFunction();
             }
         });
     }
+    getGithubAuthProvider = () => {return new this.firebase.auth.GithubAuthProvider()}
+    getGoogleAuthProvider = () => {return new this.firebase.auth.GoogleAuthProvider()}
 }
 
 export default Login;
