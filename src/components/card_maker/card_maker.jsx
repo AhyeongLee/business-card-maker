@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import Card from '../card_list/card';
+import Card from '../card/card';
 import EditForm from '../editor/edit_form';
 import styles from './card_maker.module.css';
 

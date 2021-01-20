@@ -11,7 +11,7 @@
 }
 .glass {
   position: relative;
-  width: 30em;
+  width: var(--login-glass-width);
   height: 15em;
   box-sizing: border-box;
   border-radius: var(--edit_form-border-radius);
@@ -35,7 +35,7 @@
 }
 .logo {
   position: relative;
-  width: 30em;
+  width: var(--login-glass-width);
   height: 8em;
   border-radius: var(--edit_form-border-radius) var(--edit_form-border-radius) 0
     0;
@@ -71,7 +71,7 @@
   z-index: 1;
 }
 .login_btn {
-  width: 30em;
+  width: var(--login-glass-width);
   height: 7em;
   display: flex;
   flex-direction: column;

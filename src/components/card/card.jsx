@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styles from './card.module.css';
-import imgSrc from '../images/business-cards.png';
+import imgSrc from '../../images/business-cards.png';
 
 
 const Card = ({ card, onChangeInput }) => {
