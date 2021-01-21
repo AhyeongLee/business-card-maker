@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 import logoImg from '../../images/business-cards.png';
 import styles from './header.module.css';
 import { Link } from 'react-router-dom';
 
 
-const Header = (props) => {
+const Header = memo((props) => {
     const addRef = useRef();
 
     const handleAddBtn = (e) => {
@@ -39,6 +39,6 @@ const Header = (props) => {
             
         </div>
     </header>            
-)};
+)});
 
 export default Header;

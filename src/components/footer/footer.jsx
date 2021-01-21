@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 import styles from './footer.module.css';
 import imgSrc from '../../images/add.png';
 
-const Footer = (props) => {
+const Footer = memo((props) => {
     
     return (
     <footer className={styles.footer}>
@@ -12,6 +12,6 @@ const Footer = (props) => {
             <br/>from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
         </p>
     </footer>            
-)};
+)});
 
 export default Footer;

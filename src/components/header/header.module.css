@@ -34,44 +34,20 @@
   z-index: 10;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.5s ease;
+  transition: all 0.2s ease;
 }
 .add_container:hover {
   background-color: var(--color-red);
 }
+.add_container:hover .add_btn {
+  color: white;
+}
+
 .add_btn {
   position: relative;
   font-size: 1.5rem;
   color: var(--color-light-gray);
-}
-.add_container:after {
-  content: "";
-  position: absolute;
-  width: 250%;
-  height: 1em;
-  transform: rotate(-45deg) translate(-1em, -2em);
-  top: 0;
-  bottom: 0;
-  background-color: white;
-  transition: transform 0.5s ease;
-}
-.add_container:hover:after {
-  transform: rotate(-45deg) translate(1em, 3em);
-}
-.add_container:before {
-  content: "";
-  position: absolute;
-  width: 250%;
-  height: 1em;
-  transform: rotate(-45deg) translate(-1em, -2em);
-  top: 0;
-  bottom: 0;
-  background-color: white;
-  transition: transform 0.5s ease;
-  transition-delay: 0.1s;
-}
-.add_container:hover:before {
-  transform: rotate(-45deg) translate(1em, 3em);
+  transition: all 0.2s ease;
 }
 .logo_image {
   width: 3rem;

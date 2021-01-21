@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import styles from './card.module.css';
 import imgSrc from '../../images/business-cards.png';
 
 
-const Card = ({ card, onChangeInput }) => {
+const Card = memo(({ card, onChangeInput }) => {
     const frontRef = useRef();
     const imageRef = useRef();
     const inputFileRef = useRef();
@@ -80,6 +80,6 @@ const Card = ({ card, onChangeInput }) => {
         
 
     </div>
-)};
+)});
 
 export default Card;

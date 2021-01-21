@@ -105,7 +105,7 @@
   border-radius: 3em;
   transform: translateX(-100%);
   transform-origin: top;
-  transition: transform 0.5s ease-out;
+  transition: transform 0.3s ease;
 }
 
 .btn_container:hover:after {

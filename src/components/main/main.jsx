@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../header/header';
 import CardMaker from '../card_maker/card_maker';
-import styles from './main.module.css';
 import Footer from '../footer/footer';
-import { useHistory } from 'react-router-dom';
-import loadingImg from '../../images/loading.png';
 import Loading from '../loading/loading';
-
-
-const getUUID = () => {
-    function s4() {
-      return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-  }
+import styles from './main.module.css';
 
 
 const Main = (props) => {
-
     const [cards, setCards] = useState([]);
     const history = useHistory();
     useEffect(() => {
@@ -40,22 +30,25 @@ const Main = (props) => {
               alert('logout');
               history.push('/login');
           });
-        
-        
-
     }
 
     const handleChangeInput = (property, key, value) => {
         props.databaseService.updateCard(props.loginService.getCurrentUser().uid, property, key, value);
-        const newCards = [...cards];
-        setCards(newCards.map(card => {
-        if(card.key === key) {
-            const newCard = Object.assign({}, card);
-            newCard[property] = value;
-            return newCard;
-        }
-        return card;
-        }));
+        const newCards = cards.map(card => {
+            if (card.key == key) {
+                switch(property) {
+                    case 'name': return { ...card, name: value};
+                    case 'company': return { ...card, company: value};
+                    case 'role': return { ...card, role: value};
+                    case 'email': return { ...card, email: value};
+                    case 'descriptions': return { ...card, descriptions: value};
+                    case 'theme': return { ...card, theme: value};
+        
+                }
+            }
+            return card;
+        });
+        setCards(newCards);
     }
     const handleAddBtn = () => {
         const newCard = {
@@ -81,7 +74,6 @@ const Main = (props) => {
         setCards(newCards);
     }
     return (
-        
         <>
         {props.isWaiting ? 
             <Loading /> : 

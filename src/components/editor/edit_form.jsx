@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, memo } from 'react';
 import styles from './edit_form.module.css';
 
 const themes = ['default', 'black', 'green', 'gradient'];
-const EditForm = (props) => {
+const EditForm = memo((props) => {
 
 
     const handleChangeInput = (e) => {
@@ -64,6 +64,6 @@ const EditForm = (props) => {
             </div>
         </div>
     </>
-)};
+)});
 
 export default EditForm;

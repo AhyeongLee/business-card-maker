@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, memo } from 'react';
 import Card from '../card/card';
 import EditForm from '../editor/edit_form';
 import styles from './card_maker.module.css';
 
-const CardMaker = (props) => {
+const CardMaker = memo((props) => {
     const deleteRef = useRef();
     const dragZoneRef = useRef();
 
@@ -43,6 +43,6 @@ const CardMaker = (props) => {
             <Card key="card" card={props.card} onChangeInput={handleChangeInput}/>
             <EditForm key="edit_form" card={props.card} onChangeInput={handleChangeInput}/>
     </div>            
-)};
+)});
 
 export default CardMaker;
