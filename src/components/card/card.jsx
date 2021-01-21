@@ -1,6 +1,7 @@
 import React, { memo, useRef } from 'react';
 import styles from './card.module.css';
 import imgSrc from '../../images/business-cards.png';
+import { Image } from 'cloudinary-react';
 
 
 const Card = memo(({ card, onChangeInput }) => {
@@ -66,7 +67,8 @@ const Card = memo(({ card, onChangeInput }) => {
         <div className={styles.background}></div>
         <div ref={frontRef} className={styles.front} id="flip" onClick={handleClickCard} >
             <div ref={imageRef} className={styles.photo_container} id="card-image" onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDrop={handleDrop} onDragExit={handleDragLeave} onDragStart={e => e.preventDefault()} onDragEnd={handleDragLeave} onDrag={e => e.preventDefault()} onDragOver={e => e.preventDefault()}>
-                <img src={card.photo ? card.photo : imgSrc} alt="" className={`${styles.photo}`}/>
+                {/* <img src={card.photo ? card.photo : imgSrc} alt="" className={`${styles.photo}`}/> */}
+                <Image cloudName="ahyeong" publicId="business_card_maker/business-cards_we9t9u.png" className={`${styles.photo}`} crop="scale" />
             </div>
             <h1 className={styles.name}>{card.name}</h1>
             <p className={styles.company}>{card.company}</p>
