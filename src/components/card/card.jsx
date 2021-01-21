@@ -1,12 +1,11 @@
 import React, { memo, useRef } from 'react';
 import styles from './card.module.css';
-import imgSrc from '../../images/business-cards.png';
 import { Image } from 'cloudinary-react';
+import sha1 from 'sha1';
 
-
-const Card = memo(({ card, onChangeInput }) => {
+const Card = memo(({ card, onChangeInput, imageService }) => {
     const frontRef = useRef();
-    const imageRef = useRef();
+    const imageContainerRef = useRef();
     const inputFileRef = useRef();
 
     const uploadImage = () => {
@@ -16,7 +15,7 @@ const Card = memo(({ card, onChangeInput }) => {
 
     const handleClickCard = (e) => {
         const target = e.target;
-        if (target.closest(`#${imageRef.current.id}`) || target === imageRef.current) {
+        if (target.closest(`#${imageContainerRef.current.id}`) || target === imageContainerRef.current) {
             uploadImage();
             return;
         }
@@ -26,19 +25,24 @@ const Card = memo(({ card, onChangeInput }) => {
     }
 
     const handleImageUpload = (files) => {
-        // const files = e.target.files;
         if (files.length === 0) return;
         
-        console.log(files[0]);
-        const reader = new FileReader();
-        reader.addEventListener("load", function () {
-            console.log(imageRef.current.firstChild);
-            // onImageUpload(reader.result);
-            onChangeInput('photo', reader.result);
-        }, false);
-    
-        reader.readAsDataURL(files[0]);
+        const TIMESTAMP = Math.floor(new Date().getTime() / 1000);
+        const SIGN = sha1(`timestamp=${TIMESTAMP}${imageService.apiSecret}`);
+        const FILE = files[0];
+
+        const formData = new FormData();
+        formData.append('file', FILE);
+        formData.append('api_key', imageService.apiKey);
+        formData.append('timestamp', TIMESTAMP);
+        formData.append('signature', SIGN);
         
+        imageContainerRef.current.classList.add(styles.loading);
+        imageService.uploadImageToCloudinary(formData)
+        .then((public_id) => {
+            onChangeInput('photo', public_id);
+            imageContainerRef.current.classList.remove(styles.loading);
+        });
     }
 
     const handleDragEnter = (e) => {
@@ -66,9 +70,10 @@ const Card = memo(({ card, onChangeInput }) => {
             onChange={e => {handleImageUpload(e.target.files)}}/>
         <div className={styles.background}></div>
         <div ref={frontRef} className={styles.front} id="flip" onClick={handleClickCard} >
-            <div ref={imageRef} className={styles.photo_container} id="card-image" onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDrop={handleDrop} onDragExit={handleDragLeave} onDragStart={e => e.preventDefault()} onDragEnd={handleDragLeave} onDrag={e => e.preventDefault()} onDragOver={e => e.preventDefault()}>
-                {/* <img src={card.photo ? card.photo : imgSrc} alt="" className={`${styles.photo}`}/> */}
-                <Image cloudName="ahyeong" publicId="business_card_maker/business-cards_we9t9u.png" className={`${styles.photo}`} crop="scale" />
+            <div ref={imageContainerRef} className={styles.photo_container} id="card-image" onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDrop={handleDrop} onDragExit={handleDragLeave} onDragStart={e => e.preventDefault()} onDragEnd={handleDragLeave} onDrag={e => e.preventDefault()} onDragOver={e => e.preventDefault()}>
+                {card.photo ?
+                <Image cloudName="ahyeong" publicId={card.photo} className={`${styles.photo}`} crop="scale" /> : 
+                <Image cloudName="ahyeong" publicId="business_card_maker/business-cards_we9t9u.png" className={`${styles.photo}`} crop="scale" />}
             </div>
             <h1 className={styles.name}>{card.name}</h1>
             <p className={styles.company}>{card.company}</p>

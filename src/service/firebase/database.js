@@ -5,20 +5,31 @@ class Database {
         this.firebase = firebase
     }
     writeNewCard = async (userId, card) => {
-        card.key = this.firebase.database().ref('/users/' + userId + '/cards/').push().key;
+        const cardListRef = this.firebase.database().ref('/users/' + userId + '/cards/');
+        const newCardRef = cardListRef.push();
+        card.key = newCardRef.key;
         console.log(card);
-        await this.firebase.database().ref('users/' + userId + '/cards/' + card.key).set(card);
+        await newCardRef.set(card);
+    }
+    removeCard = async (userId, cardKey) => {
+        const cardToRemove = this.firebase.database().ref('/users/' + userId + '/cards/' + cardKey);
+        await cardToRemove.remove();
     }
     readCards = (userId, setCards) => {
         return this.firebase.database().ref('/users/' + userId)
         .on('value', (snapshot) => {
             const cards = snapshot.val();
-            setCards(Object.values(cards.cards));
+            if (cards) {
+                setCards(Object.values(cards.cards));
+            } else {
+                setCards([]);
+            }
         });
     }
     updateCard = (userId, property, cardKey, value) => {
         let update;
         switch(property) {
+            case 'photo': update={photo: value}; break;
             case 'name': update={name: value}; break;
             case 'company': update={company: value}; break;
             case 'role': update={role: value}; break;
@@ -28,7 +39,7 @@ class Database {
 
         }
         console.log(update);
-        console.log(this.firebase.database().ref('/users/' + userId + '/cards/' + cardKey).update(update));
+        this.firebase.database().ref('/users/' + userId + '/cards/' + cardKey).update(update);
     }
 }
 

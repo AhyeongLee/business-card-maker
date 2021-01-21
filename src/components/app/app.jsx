@@ -11,7 +11,7 @@ import Login from '../login/login';
 
 
 
-const App = ({ loginService, databaseService }) => {
+const App = ({ loginService, databaseService, imageService }) => {
   const [isWaiting, setIsWaiting] = useState(true);
 
   return (
@@ -22,7 +22,7 @@ const App = ({ loginService, databaseService }) => {
             <Login loginService={loginService} isWaiting={isWaiting} setIsWaiting={setIsWaiting}/>
           </Route>
           <Route path="/">
-            <Main loginService={loginService} databaseService={databaseService} isWaiting={isWaiting} setIsWaiting={setIsWaiting}/>
+            <Main loginService={loginService} databaseService={databaseService} imageService={imageService} isWaiting={isWaiting} setIsWaiting={setIsWaiting}/>
           </Route>
         </Switch>
       {/* </div> */}

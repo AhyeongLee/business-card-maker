@@ -37,6 +37,7 @@ const Main = (props) => {
         const newCards = cards.map(card => {
             if (card.key == key) {
                 switch(property) {
+                    case 'photo': return { ...card, photo: value};
                     case 'name': return { ...card, name: value};
                     case 'company': return { ...card, company: value};
                     case 'role': return { ...card, role: value};
@@ -52,7 +53,7 @@ const Main = (props) => {
     }
     const handleAddBtn = () => {
         const newCard = {
-            // key: getUUID(), 
+            photo: '',
             name: 'Gildong Hong', 
             company: 'Notte',
             role: 'Document Generator',
@@ -70,8 +71,12 @@ const Main = (props) => {
     }
 
     const handleDeleteCard = (key) => {
-        const newCards = cards.filter(card => card.key !== key);
-        setCards(newCards);
+        props.databaseService.removeCard(props.loginService.user.uid, key)
+        .then(() => {
+            const newCards = cards.filter(card => card.key !== key);
+            setCards(newCards);
+        });
+        
     }
     return (
         <>
@@ -82,7 +87,7 @@ const Main = (props) => {
                     {/* <MainContent /> */}
                     <ul className={styles.card_makers}>
                         {cards.map(card => {
-                        return ( <CardMaker key={card.key} card={card} onChangeInput={handleChangeInput} onDeleteCard={handleDeleteCard}/> );
+                        return ( <CardMaker key={card.key} card={card} onChangeInput={handleChangeInput} onDeleteCard={handleDeleteCard} imageService={props.imageService}/> );
                         })}
                     </ul>
                     <Footer />
