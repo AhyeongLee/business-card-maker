@@ -45,12 +45,16 @@ const Login = (props) => {
                 </div>
                 <div className={styles.login_btn}>
                     <div className={styles.btn_container} onClick={handleLoginGoogle}>
-                        <i className="fab fa-google-plus-g"></i>
-                        <div>Sign in with Google</div>
+                        <div className={styles.icon}>
+                            <i className="fab fa-google-plus-g"></i>
+                        {/* <div>Sign in with Google</div> */}
+                        </div>
                     </div>
                     <div className={styles.btn_container} onClick={handleLoginGithub}>
-                        <i className="fab fa-github"></i>
-                        <div>Sign in with Github</div>
+                        <div className={styles.icon}>
+                            <i className="fab fa-github"></i>
+                        {/* <div>Sign in with Github</div> */}
+                        </div>
                     </div>
                 </div>
             </div>

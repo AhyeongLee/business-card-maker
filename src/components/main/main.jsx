@@ -27,7 +27,6 @@ const Main = (props) => {
         props.setIsWaiting(true);
         props.loginService.logout()
           .then(() => {
-              alert('logout');
               history.push('/login');
           });
     }

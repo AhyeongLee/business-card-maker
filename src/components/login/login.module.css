@@ -81,7 +81,7 @@
 .btn_container {
   box-sizing: border-box;
   position: relative;
-  width: 13em;
+  width: 2.5em;
   height: 2.5em;
   background-color: var(--color-black);
   border-radius: 3em;
@@ -90,12 +90,18 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  overflow: hidden;
+  /* overflow: hidden; */
+  transition: all 0.5s ease;
 }
-.btn_container:after {
+.btn_container:hover {
+  width: 10em;
+  justify-content: flex-end;
+  padding-right: 0.5em;
+}
+.btn_container:before {
   position: absolute;
-  content: "Login";
-  width: 100%;
+  content: "";
+  width: 0;
   height: 100%;
   background-color: var(--color-red);
   color: #eee;
@@ -103,20 +109,41 @@
   justify-content: center;
   align-items: center;
   border-radius: 3em;
-  transform: translateX(-100%);
   transform-origin: top;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease-out;
+  overflow: hidden;
 }
 
-.btn_container:hover:after {
-  transform: translateX(0);
+.btn_container:hover:before {
+  left: 0;
+  width: 80%;
 }
-/* google, github icon */
-.btn_container > svg {
+
+.btn_container:after {
   position: absolute;
-  left: 0.5em;
-  top: 50%;
-  transform: translateY(-50%);
+  content: "Sign in with";
+  left: 0;
+  width: 80%;
+  height: 100%;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3em;
+  /* transform: translateX(-100%); */
+  transform-origin: top;
+  transition: all 0.2s linear;
+  transition-delay: 0s;
+  opacity: 0;
+  transform: rotateY(90deg);
+}
+.btn_container:hover:after {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+/* google, github icon */
+.icon {
   color: var(--color-light-gray);
 }
 
