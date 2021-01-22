@@ -2,12 +2,14 @@
 
 .container {
   position: relative;
+  flex-shrink: 0;
   box-sizing: border-box;
   margin: var(--screen-padding);
   border-radius: var(--edit_form-border-radius);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background: inherit;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, 0.05);
