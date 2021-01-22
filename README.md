@@ -3,7 +3,7 @@
 <br>
 이름, 회사 등 정보를 입력하면 명함 형태로 보여주는 반응형 웹 애플리케이션
 <br></br>
-<img src="screen_shots/main.png" max-width="800"><br>
+<img src="screen_shots/desktop.png" max-width="800"><br>
 <br>
 
 <br><br>
@@ -39,12 +39,12 @@ React Hooks, PostCSS, React Router, Firebase 그리고 Cloudinary, 이렇게 강
 ## Screen Shots
 
 - Desktop</br>
-  <img src="screen_shots/main.png" width="600">
-  <small>명함 클릭하면 뒷면 볼 수 있음 </small>
-  <img src="screen_shots/main_back.png" width="600">
+  <img src="screen_shots/desktop.png" width="600"><br>
+  <small>명함 클릭하면 뒷면 볼 수 있음 </small><br>
+  <img src="screen_shots/desktop_back.png" width="600">
   <br>
 - Mobile</br>
-  <img src="screen_shots/main_mobile.png" width="300">
+  <img src="screen_shots/mobile.png" width="300">
 
 ## Functions
 
@@ -81,7 +81,7 @@ flex-direction: column;
 
   </small>
 
-<img src="screen_shots/ios_bug.png" width="300"></br>
+<img src="screen_shots/ios_mobile_bug.png" width="300"></br>
 
 #### Flex box ios Bug Fix
 
