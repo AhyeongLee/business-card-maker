@@ -1,33 +1,33 @@
 @import "../../vars.css";
 
 .container {
-  display: flex;
-  flex-direction: column;
   width: 80vw;
   margin: 1em;
+  display: flex;
+  flex-direction: column;
   z-index: 1;
 }
 .label {
+  margin-bottom: 0.3em;
   font-weight: 600;
   font-size: 0.8em;
-  margin-bottom: 0.3em;
 }
 .input {
-  margin-bottom: 0.6em;
-  padding: 0em 1em;
+  box-sizing: border-box;
   width: var(--edit_form-input-width);
   height: var(--edit_form-input-height);
+  margin-bottom: 0.6em;
+  padding: 0em 1em;
   font-size: var(--edit_form-input-font-size);
   border: 1px solid var(--color-light-gray);
   border-radius: var(--edit_form-border-radius);
-  outline-style: none;
-  box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.5);
+  outline-style: none;
 }
 .radios {
+  padding: 1em;
   border: 1px solid var(--color-light-gray);
   border-radius: var(--edit_form-border-radius);
-  padding: 1em;
   display: flex;
   justify-content: space-around;
   background-color: rgba(255, 255, 255, 0.5);
@@ -46,10 +46,10 @@
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
+  margin-bottom: 0.5em;
   border-radius: 50%;
   background-color: var(--color-light-gray);
   border: 1px solid var(--color-gray);
-  margin-bottom: 0.5em;
   cursor: pointer;
 }
 .radio_btn:after {

@@ -5,8 +5,8 @@
   flex-shrink: 0;
   text-align: center;
   padding-bottom: 1em;
-  background-color: var(--color-black);
   color: var(--color-light-gray);
+  background-color: var(--color-black);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,20 +17,20 @@
   position: relative;
   width: 8em;
   height: 2em;
-  background-color: var(--color-light-gray);
+  margin: 2em;
   color: var(--color-black);
+  background-color: var(--color-light-gray);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  margin: 2em;
   transition: all 0.5s ease;
   cursor: pointer;
   overflow: hidden;
 }
 .my_info:hover {
-  background-color: var(--color-red);
   color: white;
+  background-color: var(--color-red);
 }
 .my_info:before {
   content: "";

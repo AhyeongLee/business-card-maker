@@ -1,0 +1,6 @@
+.container {
+  margin-bottom: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}

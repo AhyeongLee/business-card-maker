@@ -5,6 +5,7 @@ import CardMaker from '../card_maker/card_maker';
 import Footer from '../footer/footer';
 import Loading from '../loading/loading';
 import styles from './main.module.css';
+import CardMakerList from '../card_maker_list/card_maker_list';
 
 
 const Main = (props) => {
@@ -81,12 +82,7 @@ const Main = (props) => {
             <Loading /> : 
             <div className={styles.main}>
                     <Header onAddBtn={handleAddBtn} onLogout={handleLogout}/>
-                    {/* <MainContent /> */}
-                    <ul className={styles.card_makers}>
-                        {cards.map(card => {
-                        return ( <CardMaker key={card.key} card={card} onChangeInput={handleChangeInput} onDeleteCard={handleDeleteCard} imageService={props.imageService}/> );
-                        })}
-                    </ul>
+                    <CardMakerList cards={cards} onChangeInput={handleChangeInput} onDeleteCard={handleDeleteCard} imageService={props.imageService}/>
                     <Footer />
                 
             </div>           

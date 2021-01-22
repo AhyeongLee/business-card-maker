@@ -2,13 +2,13 @@
 
 .container {
   position: relative;
+  box-sizing: border-box;
   width: 100%;
+  margin: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  margin: 1em;
   perspective: 2000px;
 }
 .container:before {
@@ -36,7 +36,6 @@
 }
 .front {
   position: relative;
-  transform-style: preserve-3d;
   width: 80vw;
   height: 45vw;
   display: flex;
@@ -45,6 +44,7 @@
   justify-content: center;
   background-color: white;
   border-radius: var(--edit_form-border-radius);
+  transform-style: preserve-3d;
   transform: rotateY(0);
   transition: transform 0.5s ease;
   cursor: pointer;
@@ -74,7 +74,6 @@
 
 .back {
   position: absolute;
-  transform: rotateY(-180deg) translateZ(1px);
   top: 0;
   left: 0;
   width: 100%;
@@ -85,6 +84,7 @@
   align-items: center;
   background-color: var(--color-red);
   border-radius: var(--edit_form-border-radius);
+  transform: rotateY(-180deg) translateZ(1px);
 }
 #black .back {
   background-color: white;
