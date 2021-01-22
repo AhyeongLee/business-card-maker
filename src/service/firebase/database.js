@@ -8,7 +8,6 @@ class Database {
         const cardListRef = this.firebase.database().ref('/users/' + userId + '/cards/');
         const newCardRef = cardListRef.push();
         card.key = newCardRef.key;
-        console.log(card);
         await newCardRef.set(card);
     }
     removeCard = async (userId, cardKey) => {
@@ -38,7 +37,6 @@ class Database {
             case 'theme': update={theme: value}; break;
 
         }
-        console.log(update);
         this.firebase.database().ref('/users/' + userId + '/cards/' + cardKey).update(update);
     }
 }

@@ -9,6 +9,39 @@
   justify-content: center;
   align-items: center;
 }
+
+.alert {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.3em;
+  transform-origin: top;
+  transform: rotateX(90deg);
+  background-color: var(--color-red);
+  overflow: hidden;
+  transition: all 1.5s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+.alert.show {
+  transform: rotateX(0deg);
+}
+.alert p {
+  font-weight: 330;
+  margin-right: 1em;
+  letter-spacing: 0.02em;
+  line-height: 1.4em;
+}
+.alert strong {
+  font-weight: 400;
+}
+.alert .x {
+  cursor: pointer;
+}
+
 .glass {
   position: relative;
   width: var(--login-glass-width);

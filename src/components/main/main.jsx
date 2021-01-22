@@ -11,9 +11,7 @@ const Main = (props) => {
     const [cards, setCards] = useState([]);
     const history = useHistory();
     useEffect(() => {
-        console.log('test');
         const user = props.loginService.getCurrentUser();
-        console.log(user);
         if (user) {
             props.setIsWaiting(false);
             props.databaseService.readCards(user.uid, setCards);

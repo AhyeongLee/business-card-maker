@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logoImg from '../../images/business-cards.png';
 import styles from './login.module.css';
 import { Link, useHistory} from "react-router-dom";
@@ -6,6 +6,7 @@ import Loading from '../loading/loading';
 
 const Login = (props) => {
     const history = useHistory();
+    const alertRef = useRef();
 
     const hasSession = () => {
         history.push('/');
@@ -14,6 +15,14 @@ const Login = (props) => {
         props.setIsWaiting(false); 
     }
     useEffect(() => {
+        props.loginService.getSignInWithRedirect()
+        .then(result => {
+            if (result === 'Success') return;
+            if (result.errorCode === 'auth/account-exists-with-different-credential') {
+                alertRef.current.classList.add(styles.show);    
+            }
+            
+        });
         props.loginService.checkSession(hasSession, hasNoSession);
     }, []);
 
@@ -33,11 +42,20 @@ const Login = (props) => {
             history.push('/');
         });
     }
+    const handleClickX = () => {
+        alertRef.current.classList.remove(styles.show);
+    }
     return (
         <>
         {props.isWaiting ? 
         <Loading /> :
         <div className={styles.container}>
+            <div ref={alertRef} className={styles.alert}>
+                <p><strong>알림: </strong>같은 이메일 주소 계정이 이미 존재합니다. 이 이메일 주소와 연결된 제공 업체를 사용하여 로그인 하십시오. </p>
+                <span className={styles.x} onClick={handleClickX}>
+                    <i className="fas fa-times"></i>
+                </span>
+            </div>
             <div className={styles.glass}>
                 <div className={styles.logo}>
                     <img className={styles.logo_image} src={logoImg} alt="logo image"/>

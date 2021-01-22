@@ -3,8 +3,6 @@ class Image {
     constructor(apiKey, apiSecret) {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
-        console.log('Image constructor');
-        console.log(apiKey);
     }
     uploadImageToCloudinary = async (data) => {
         const res = await fetch(url, {

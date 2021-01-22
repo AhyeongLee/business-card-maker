@@ -7,7 +7,6 @@ const CardMaker = memo((props) => {
     const deleteRef = useRef();
 
     const handleChangeInput = (property, value) => {
-        console.log(property, value);
         props.onChangeInput(property, props.card.key, value);
     }
     const handleDeleteCard = (e) => {

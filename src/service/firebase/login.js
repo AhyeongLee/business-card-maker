@@ -22,19 +22,20 @@ class Login {
             this.errorMessage = error.message;
         }
     }
-    getGoogleWithRedirect = async () => {
-        console.log('getGoogleWithRedirect');
+    getSignInWithRedirect = async () => {
         try {
             const result = await this.firebase.auth().getRedirectResult();
             if (result.credential) {
                 this.token = result.credential.accessToken;
             }
             this.user = result.user;
+            return 'Success';
         } catch (error) {
             this.error.errorCode = error.code;
             this.error.errorMessage = error.message;
             this.error.email = error.email;
             this.error.credentail = error.credentail;
+            return this.error;
         }
     }
     getCurrentUser = () => {
