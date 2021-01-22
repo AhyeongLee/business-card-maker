@@ -6,6 +6,10 @@ import styles from './header.module.css';
 const Header = memo((props) => {
     const addRef = useRef();
 
+    /**
+     * @param {event} e 
+     * Call onAddBtn() & Scroll to bottom
+     */
     const handleAddBtn = (e) => {
         if (e.target.closest(`#${addRef.current.id}`)) {
             props.onAddBtn();

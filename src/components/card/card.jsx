@@ -8,22 +8,17 @@ const Card = memo(({ card, onChangeInput, imageService }) => {
     const imageContainerRef = useRef();
     const inputFileRef = useRef();
 
+    /**
+     * Click input[type="file"] manually
+     */
     const uploadImage = () => {
-        console.log(inputFileRef.current);
         inputFileRef.current.click();
     }
 
-    const handleClickCard = (e) => {
-        const target = e.target;
-        if (target.closest(`#${imageContainerRef.current.id}`) || target === imageContainerRef.current) {
-            uploadImage();
-            return;
-        }
-        if (target.closest(`#${frontRef.current.id}`) || target === frontRef.current) {
-            frontRef.current.classList.toggle(styles.flipped);
-        }
-    }
-
+    /**
+     * @param {files} files - files from input[type="file"]
+     * Create FormData and pass it to ImageService.uploadImageToCloudinary()
+     */
     const handleImageUpload = (files) => {
         if (files.length === 0) return;
         
@@ -36,8 +31,9 @@ const Card = memo(({ card, onChangeInput, imageService }) => {
         formData.append('api_key', imageService.apiKey);
         formData.append('timestamp', TIMESTAMP);
         formData.append('signature', SIGN);
-        
+
         imageContainerRef.current.classList.add(styles.loading);
+
         imageService.uploadImageToCloudinary(formData)
         .then((public_id) => {
             onChangeInput('photo', public_id);
@@ -45,6 +41,7 @@ const Card = memo(({ card, onChangeInput, imageService }) => {
         });
     }
 
+    // Upload profile photo by drag & drop
     const handleDragEnter = (e) => {
         e.preventDefault();
         e.target.classList.add(styles.dragover);
@@ -58,8 +55,24 @@ const Card = memo(({ card, onChangeInput, imageService }) => {
         console.log(e.dataTransfer.files);
         handleImageUpload(e.dataTransfer.files);
         e.target.classList.remove(styles.dragover);
-
     }
+    // Upload profile photo by drag & drop END
+
+    /**
+     * @param {event} e 
+     * For flip card animation
+     */
+    const handleClickCard = (e) => {
+        const target = e.target;
+        if (target.closest(`#${imageContainerRef.current.id}`) || target === imageContainerRef.current) {
+            uploadImage();
+            return;
+        }
+        if (target.closest(`#${frontRef.current.id}`) || target === frontRef.current) {
+            frontRef.current.classList.toggle(styles.flipped);
+        }
+    }
+
     return (
     <div className={styles.container} id={styles[card.theme]}>
         <input 

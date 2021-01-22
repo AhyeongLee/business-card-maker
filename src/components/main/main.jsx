@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../header/header';
-import CardMaker from '../card_maker/card_maker';
 import Footer from '../footer/footer';
 import Loading from '../loading/loading';
-import styles from './main.module.css';
 import CardMakerList from '../card_maker_list/card_maker_list';
+import styles from './main.module.css';
 
 
 const Main = (props) => {
     const [cards, setCards] = useState([]);
     const history = useHistory();
+
+    /**
+     * Check login
+     */
     useEffect(() => {
         const user = props.loginService.getCurrentUser();
         if (user) {
@@ -22,6 +25,9 @@ const Main = (props) => {
         
     }, []);
 
+    /**
+     * Logout & Redirect to /login
+     */
     const handleLogout = () => {
         props.setIsWaiting(true);
         props.loginService.logout()
@@ -30,8 +36,14 @@ const Main = (props) => {
           });
     }
 
+    /**
+     * @param {String} property - property of card object for change its value
+     * @param {String} key - key of card
+     * @param {String} value - value to change
+     */
     const handleChangeInput = (property, key, value) => {
-        props.databaseService.updateCard(props.loginService.getCurrentUser().uid, property, key, value);
+        const userId = props.loginService.getCurrentUser().uid;
+        props.databaseService.updateCard(userId, property, key, value);
         const newCards = cards.map(card => {
             if (card.key == key) {
                 switch(property) {
@@ -42,13 +54,16 @@ const Main = (props) => {
                     case 'email': return { ...card, email: value};
                     case 'descriptions': return { ...card, descriptions: value};
                     case 'theme': return { ...card, theme: value};
-        
                 }
             }
             return card;
         });
         setCards(newCards);
     }
+    /**
+     * Add a new card with default value
+     * Get a key from DatabaseService.writeNewCard()
+     */
     const handleAddBtn = () => {
         const newCard = {
             photo: '',
@@ -64,10 +79,11 @@ const Main = (props) => {
             const newCards = [...cards, newCard];
             setCards(newCards);
         });
-            
-
     }
 
+    /**
+     * @param {String} key - key of card to delete
+     */
     const handleDeleteCard = (key) => {
         props.databaseService.removeCard(props.loginService.user.uid, key)
         .then(() => {
