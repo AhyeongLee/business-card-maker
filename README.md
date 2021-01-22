@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Business Card Maker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
+이름, 회사 등 정보를 입력하면 명함 형태로 보여주는 반응형 웹 애플리케이션
+<br></br>
+<img src="screen_shots/main.png" max-width="800"><br>
+<br>
 
-## Available Scripts
+<br><br>
 
-In the project directory, you can run:
+<details open="open">
+  <summary>개요</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#screen-shots">Screen Shots</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#what-i-learned">What I Learned</a></li>
+  </ol>
+</details>
+</br>
 
-### `yarn start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## About The Project
 
-### `yarn test`
+드림코딩 아카데미 React Basic 강의 마지막 과제.
+React Hooks, PostCSS, React Router, Firebase 그리고 Cloudinary, 이렇게 강의에서 주어진 5가지 키워드와 데모를 보고 Solution 듣기 전에 개발.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+디자인, 애니메이션 효과는 내 마음대로 👻
 
-### `yarn build`
+## Skills
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React JS
+- Html/CSS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Screen Shots
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Desktop</br>
+  <img src="screen_shots/main.png" width="600">
+  <small>명함 클릭하면 뒷면 볼 수 있음 </small>
+  <img src="screen_shots/main_back.png" width="600">
+  <br>
+- Mobile</br>
+  <img src="screen_shots/main_mobile.png" width="300">
 
-### `yarn eject`
+## Functions
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Sign in with Auth Provider
+- Add, Delete Card
+- Write, Read, Update and Delete data in realtime
+- Upload image (drag & drop 으로도 가능)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## APIs
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [Firebase](https://firebase.google.com/?hl=pt-br)
+  - Hosting, Realtime Database, Authentication
+- [Cloudinary](https://cloudinary.com/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Acknowledgements
 
-## Learn More
+- [Font Awesome](https://fontawesome.com/)
+- [Dream Coding](https://academy.dream-coding.com/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## What I Learned
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Flex box ios Bug
 
-### Code Splitting
+```css
+// flex container
+flex-direction: column;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  <small>
 
-### Analyzing the Bundle Size
+- PC에서 볼 때는 자식 element 들의 크기에 따라 유연하게 크기가 결정 되었지만 배포 후 ios에서 봤을 때 아래와 같이 버그가 있었음
+- flex를 column 정렬했을 때 flexable한 요소들이 모두 shrink 되었음
+- header는 flex-basis를 정해줬기 때문에 줄어들지 않음
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  </small>
 
-### Making a Progressive Web App
+<img src="screen_shots/ios_bug.png" width="300"></br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Flex box ios Bug Fix
 
-### Advanced Configuration
+```css
+// flex items
+flex-shrink: 0;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```css
+// flex items
+flex-basis: 100px;
+```
 
-### Deployment
+  <small>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- flex item 들의 자리가 부족해서 알아서 shrink 된 것이 버그의 원인
+- flex-shrink 를 0으로 적용시켜 shrink 되지 않도록 함
+- flex-basis 를 사용하면 크기가 고정되는데 이것은 내가 원하는 것이 아님 (자식 element의 크기에 따라서 자연스럽게 반응하기를 원했음)
+- header는 flex-basis 를 정해줌
 
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  </small>
