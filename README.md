@@ -53,7 +53,7 @@ React Hooks, PostCSS, React Router, Firebase 그리고 Cloudinary, 이렇게 강
 - Sign in with Auth Provider
 - Add, Delete Card
 - Write, Read, Update and Delete data in realtime
-- Upload image (drag & drop 으로도 가능)
+- Upload image (drag & drop 으로도 가능하지만 예외처리는 아직 안함)
 
 ## APIs
 
