@@ -7,18 +7,19 @@ import CardMakerList from '../card_maker_list/card_maker_list';
 import styles from './main.module.css';
 
 
-const Main = (props) => {
+const Main = ({ loginService, databaseService, imageService }) => {
     const [cards, setCards] = useState([]);
+    const [isWaiting, setIsWaiting] = useState(true);
     const history = useHistory();
 
     /**
      * Check login
      */
     useEffect(() => {
-        const user = props.loginService.getCurrentUser();
+        const user = loginService.getCurrentUser();
         if (user) {
-            props.setIsWaiting(false);
-            props.databaseService.readCards(user.uid, setCards);
+            setIsWaiting(false);
+            databaseService.readCards(user.uid, setCards);
         } else {
             history.push('/login');
         }
@@ -29,8 +30,8 @@ const Main = (props) => {
      * Logout & Redirect to /login
      */
     const handleLogout = () => {
-        props.setIsWaiting(true);
-        props.loginService.logout()
+        setIsWaiting(true);
+        loginService.logout()
           .then(() => {
               history.push('/login');
           });
@@ -42,8 +43,8 @@ const Main = (props) => {
      * @param {String} value - value to change
      */
     const handleChangeInput = (property, key, value) => {
-        const userId = props.loginService.getCurrentUser().uid;
-        props.databaseService.updateCard(userId, property, key, value);
+        const userId = loginService.getCurrentUser().uid;
+        databaseService.updateCard(userId, property, key, value);
         const newCards = cards.map(card => {
             if (card.key == key) {
                 switch(property) {
@@ -74,7 +75,7 @@ const Main = (props) => {
             descriptions: 'descriptions...',
             theme: 'default',
           };
-        props.databaseService.writeNewCard(props.loginService.user.uid, newCard)
+        databaseService.writeNewCard(loginService.user.uid, newCard)
         .then(() => {
             const newCards = [...cards, newCard];
             setCards(newCards);
@@ -85,7 +86,7 @@ const Main = (props) => {
      * @param {String} key - key of card to delete
      */
     const handleDeleteCard = (key) => {
-        props.databaseService.removeCard(props.loginService.user.uid, key)
+        databaseService.removeCard(loginService.user.uid, key)
         .then(() => {
             const newCards = cards.filter(card => card.key !== key);
             setCards(newCards);
@@ -94,11 +95,11 @@ const Main = (props) => {
     }
     return (
         <>
-        {props.isWaiting ? 
+        {isWaiting ? 
             <Loading /> : 
             <div className={styles.main}>
                     <Header onAddBtn={handleAddBtn} onLogout={handleLogout}/>
-                    <CardMakerList cards={cards} onChangeInput={handleChangeInput} onDeleteCard={handleDeleteCard} imageService={props.imageService}/>
+                    <CardMakerList cards={cards} onChangeInput={handleChangeInput} onDeleteCard={handleDeleteCard} imageService={imageService}/>
                     <Footer />
                 
             </div>           

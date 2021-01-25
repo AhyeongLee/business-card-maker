@@ -3,7 +3,7 @@ import logoImg from '../../images/business-cards.png';
 import styles from './header.module.css';
 
 
-const Header = memo((props) => {
+const Header = memo(({ onAddBtn, onLogout }) => {
     const addRef = useRef();
 
     /**
@@ -12,7 +12,7 @@ const Header = memo((props) => {
      */
     const handleAddBtn = (e) => {
         if (e.target.closest(`#${addRef.current.id}`)) {
-            props.onAddBtn();
+            onAddBtn();
             setTimeout(() => {
                 window.scroll({
                 top: document.body.scrollHeight,
@@ -22,7 +22,7 @@ const Header = memo((props) => {
         
     }
     const handleLogout =() => {
-        props.onLogout();
+        onLogout();
     }
     return (
     <header className={styles.container}>

@@ -22,10 +22,15 @@ const Card = memo(({ card, onChangeInput, imageService }) => {
     const handleImageUpload = (files) => {
         if (files.length === 0) return;
         
+        const FILE = files[0];
+        if (FILE.type !== 'image/png') {
+            alert('이미지 파일만 업로드 가능합니다.');
+            return;
+        }
+        
         const TIMESTAMP = Math.floor(new Date().getTime() / 1000);
         const SIGN = sha1(`timestamp=${TIMESTAMP}${imageService.apiSecret}`);
-        const FILE = files[0];
-
+        
         const formData = new FormData();
         formData.append('file', FILE);
         formData.append('api_key', imageService.apiKey);

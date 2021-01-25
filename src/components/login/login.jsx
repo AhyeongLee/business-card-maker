@@ -5,6 +5,7 @@ import { Link, useHistory} from "react-router-dom";
 import Loading from '../loading/loading';
 
 const Login = (props) => {
+    const [isWaiting, setIsWaiting] = useState(true);
     const history = useHistory();
     const alertRef = useRef();
 
@@ -12,7 +13,7 @@ const Login = (props) => {
         history.push('/');
     }
     const hasNoSession = () => {
-        props.setIsWaiting(false); 
+        setIsWaiting(false); 
     }
     useEffect(() => {
         props.loginService.getSignInWithRedirect()
@@ -27,7 +28,7 @@ const Login = (props) => {
     }, []);
 
     const handleLoginGoogle = () => {
-        props.setIsWaiting(true);
+        setIsWaiting(true);
         const provider = props.loginService.getGoogleAuthProvider();
         props.loginService.signInWithRedirect(provider)
         .then(() => {
@@ -35,7 +36,7 @@ const Login = (props) => {
         });
     }
     const handleLoginGithub = () => {
-        props.setIsWaiting(true);
+        setIsWaiting(true);
         const provider = props.loginService.getGithubAuthProvider();
         props.loginService.signInWithRedirect(provider)
         .then(() => {
@@ -47,7 +48,7 @@ const Login = (props) => {
     }
     return (
         <>
-        {props.isWaiting ? 
+        {isWaiting ? 
         <Loading /> :
         <div className={styles.container}>
             <div ref={alertRef} className={styles.alert}>
