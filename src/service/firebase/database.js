@@ -25,9 +25,16 @@ class Database {
         await cardToRemove.remove();
     }
     
-    readCards = (userId, setCards) => {
-        return this.firebase.database().ref('/users/' + userId)
-        .on('value', (snapshot) => {
+    /**
+     * 
+     * @param {String} userId 
+     * @param {Array} setCards 
+     * Callbacks are removed by calling the off() method on your Firebase database reference.
+     * This function is called by useEffect() method and off() method will be called when Component is unmounted
+     */
+    readAndSyncCards = (userId, setCards) => {
+        const ref = this.firebase.database().ref('/users/' + userId);
+        ref.on('value', (snapshot) => {
             const cards = snapshot.val();
             if (cards) {
                 setCards(Object.values(cards.cards));
@@ -35,6 +42,7 @@ class Database {
                 setCards([]);
             }
         });
+        return () => ref.off();
     }
     /**
      * @param {String} userId - id of user currently logged in

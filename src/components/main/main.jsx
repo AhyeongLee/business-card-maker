@@ -19,11 +19,13 @@ const Main = ({ loginService, databaseService, imageService }) => {
         const user = loginService.getCurrentUser();
         if (user) {
             setIsWaiting(false);
-            databaseService.readCards(user.uid, setCards);
+            const stopSync = databaseService.readAndSyncCards(user.uid, setCards);
+            return () => stopSync();
         } else {
             history.push('/login');
         }
         
+
     }, []);
 
     /**
