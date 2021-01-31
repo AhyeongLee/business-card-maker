@@ -18,6 +18,8 @@ const config = {
   databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
   // storageBucket: ,
 };
+
+
 firebase.initializeApp(config);
 
 const cloudinary_api_key = process.env.REACT_APP_CLOUDINARY_API_KEY;
@@ -34,3 +36,13 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <div>hello</div>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );

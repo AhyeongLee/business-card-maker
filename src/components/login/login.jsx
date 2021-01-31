@@ -58,7 +58,7 @@ const Login = (props) => {
             </div>
             <div className={styles.glass}>
                 <div className={styles.logo}>
-                    <img className={styles.logo_image} src="images/business-cards.png" alt="logo image"/>
+                    <img className={styles.logo_image} src="public/images/business-cards.png" alt="logo image"/>
                     <h1 className={styles.logo_title}>Business Card Maker</h1>
                 </div>
                 <div className={styles.login_btn}>
