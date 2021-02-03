@@ -32,7 +32,7 @@ module.exports = {
                         
                     ],
                     plugins : [
-                        // ['react-refresh/babel'],
+                        ['react-refresh/babel'],
                         ['@babel/plugin-proposal-class-properties'],
                         ["@babel/plugin-transform-runtime",
                             {
@@ -62,7 +62,7 @@ module.exports = {
     ],
     },
     plugins: [
-        // new RefreshWebpackPlugin(),
+        new RefreshWebpackPlugin(),
         new DotenvWebpack(),
     ],
     output: {
