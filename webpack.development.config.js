@@ -4,8 +4,8 @@ const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const DotenvWebpack = require('dotenv-webpack');
 
 module.exports = {
-    name: "business-card-maker-setting",
     mode: 'development',
+    name: "business-card-maker-setting",
     devtool: 'cheap-module-source-map',
     resolve: {
         extensions: ['.js', '.jsx'],

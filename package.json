@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --env development",
-    "parallels": "webpack serve --env development --host 0.0.0.0 --disable-host-check",
-    "build": "webpack build"
+    "dev": "webpack serve --config webpack.development.config.js --env development",
+    "parallels": "webpack serve --config webpack.development.config.js --env development --host 0.0.0.0 --disable-host-check",
+    "build": "webpack build --config webpack.production.config.js --env production"
   },
   "author": "Ahyeong Lee",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "babel-preset-es2015": "^6.24.1",
     "cloudinary-react": "^1.6.8",
     "core-js": "^3.8.3",
+    "express": "^4.17.1",
     "firebase": "^8.2.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
