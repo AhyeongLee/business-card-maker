@@ -3,11 +3,6 @@ const webpack = require('webpack');
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const DotenvWebpack = require('dotenv-webpack');
 
-// import path from 'path';
-// import webpack from 'webpack';
-// import RefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-// import DotenvWebpack from 'dotenv-webpack';
-
 module.exports = {
     name: "business-card-maker-setting",
     mode: 'development',
@@ -17,31 +12,33 @@ module.exports = {
     },
 
     entry: {
-        app: ['@babel/polyfill','./src/index'],
+        app: ['./src/index'],
     },
     module: {
         rules: [
             {
-                test: /\.jsx?/,
-                exclude : [
-                    /\bcore-js\b/,
-                    /\bwebpack\/buildin\b/
-                ],
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules\/(?!(axios|@redux-saga|redux-logger))/,
                 loader: 'babel-loader',
                 options: {
                     presets: [
                         ['@babel/preset-env', {
                             targets: {
-                                browsers: ['> 5% in KR', 'last 2 chrome versions'],
+                                browsers: ['> 5% in KR', 'last 2 chrome versions', 'ie > 9']
                             },
-                            
-                            
+                            debug: true
                         }], 
-                        '@babel/preset-react',
+                        ['@babel/preset-react']
+                        
                     ],
                     plugins : [
-                        ['react-refresh/babel'],
-                        ['@babel/plugin-proposal-class-properties', { 'loose': true }],
+                        // ['react-refresh/babel'],
+                        ['@babel/plugin-proposal-class-properties'],
+                        ["@babel/plugin-transform-runtime",
+                            {
+                              "corejs": 3
+                            }
+                        ]
                     ]
                 }
             },
@@ -65,20 +62,27 @@ module.exports = {
     ],
     },
     plugins: [
-        new RefreshWebpackPlugin(),
+        // new RefreshWebpackPlugin(),
         new DotenvWebpack(),
     ],
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'index_bundle.js',
         publicPath: '/public/',
+        environment: {
+            arrowFunction: false,
+            const: false,
+            destructuring: false,
+            dynamicImport: false,
+            forOf: false,
+            module: false,
+        }
     },
     devServer: {
         publicPath: '/public/',
         hot: true,
         historyApiFallback : {
             index: '/public/index.html'
-        } , 
-        
+        }
     },
 };
