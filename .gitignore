@@ -48,3 +48,6 @@ Jenkinsfile
 # server
 /server/dist/*
 /server/public/*
+
+# package-lock.json
+package-lock.json
