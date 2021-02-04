@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const DotenvWebpack = require('dotenv-webpack');
 
 module.exports = {

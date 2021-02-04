@@ -3,9 +3,9 @@ const path = require('path');
 const app = express();
 const port = 8080;
 
-// app.get('/', (req, res) => res.send('Hello World!'));
 app.use(express.static('public'));
 app.use('/dist', express.static('dist'));
+app.use('/public/images', express.static('public/images'));
 
 app.get('/*', function (req, res) {
     
