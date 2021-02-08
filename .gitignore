@@ -40,12 +40,6 @@ yarn-error.log*
 .firebase/
 
 
-
-# Docker & Jenkins
-Dockerfile
-Jenkinsfile
-
-
 # server
 /server/dist/*
 /server/public/*
