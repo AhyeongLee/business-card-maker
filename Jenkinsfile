@@ -27,7 +27,7 @@ pipeline {
                         env.gitCloneResult = true
                     } catch(Exception e) {
                         print(e)
-                        // cleanWs()
+                        cleanWs()
                         currentBuild.result = 'FAILURE'
                     }
                 }
@@ -51,7 +51,7 @@ pipeline {
                         
                     } catch(Exception e) {
                         print(e)
-                        // cleanWs()
+                        cleanWs()
                         currentBuild.result = 'FAILURE'
                     }
                 }
@@ -93,7 +93,7 @@ pipeline {
 
                     } catch(Exception e) {
                         print(e)
-                        // cleanWs()
+                        cleanWs()
                         currentBuild.result = 'FAILURE'
                     }
                 }
@@ -141,8 +141,10 @@ aws deploy create-deployment \
 
                     } catch(Exception e) {
                         print(e)
-                        // cleanWs()
+                        cleanWs()
                         currentBuild.result = 'FAILURE'
+                    } finally {
+                        cleanWs()
                     }
                 }
             }
