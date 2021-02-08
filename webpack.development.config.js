@@ -68,7 +68,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'index_bundle.js',
-        publicPath: '/public/',
+        publicPath: '/dist/',
         environment: {
             arrowFunction: false,
             const: false,
@@ -79,7 +79,7 @@ module.exports = {
         }
     },
     devServer: {
-        publicPath: '/public/',
+        publicPath: '/dist/',
         hot: true,
         historyApiFallback : {
             index: '/public/index.html'
