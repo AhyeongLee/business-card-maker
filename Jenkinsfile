@@ -19,26 +19,7 @@ pipeline {
         PATH = "$PATH"
     }
     stages {
-        stage('Git Clone') {
-            steps {
-                script {
-                    try {
-                        git branch: "${GIT_BRANCH}", url: "${GIT_URL}", credentialsId: "github-sign-in"
-                        env.gitCloneResult = true
-                    } catch(Exception e) {
-                        print(e)
-                        cleanWs()
-                        currentBuild.result = 'FAILURE'
-                    }
-                }
-            }
-        }  
-        stage('Webpack Build') {
-            when {
-                expression {
-                    return env.gitCloneResult ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/
-                }
-            }           
+        stage('Webpack Build') {           
             steps {            
                 script {
                     try {
