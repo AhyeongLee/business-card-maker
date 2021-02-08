@@ -1,6 +1,5 @@
 import React, { useRef, memo } from 'react';
 import styles from './footer.module.css';
-import imgSrc from '../../images/add.png';
 
 const Footer = memo((props) => {
     

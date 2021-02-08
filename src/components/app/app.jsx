@@ -10,15 +10,15 @@ import Login from '../login/login';
 
 
 const App = ({ loginService, databaseService, imageService }) => {
-
+  
   return (
     <>
     <Router>
         <Switch>
-          <Route path="/login">
+          <Route exact path="/login">
             <Login loginService={loginService} />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Main loginService={loginService} databaseService={databaseService} imageService={imageService}/>
           </Route>
         </Switch>

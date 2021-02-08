@@ -23,8 +23,8 @@ const Card = memo(({ card, onChangeInput, imageService }) => {
         if (files.length === 0) return;
         
         const FILE = files[0];
-        if (FILE.type !== 'image/png') {
-            alert('이미지 파일만 업로드 가능합니다.');
+        if (FILE.type !== 'image/png' && FILE.type !== 'image/jpeg') {
+            alert('png, jpeg 이미지 파일만 업로드 가능합니다.');
             return;
         }
         

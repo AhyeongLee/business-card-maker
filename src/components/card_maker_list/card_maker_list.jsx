@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import CardMaker from '../card_maker/card_maker';
 import styles from './card_maker_list.module.css';
 
@@ -8,7 +8,7 @@ const CardMakerList = ({ cards, onChangeInput, onDeleteCard, imageService}) => {
     }
     const handleDeleteCard = (key) => {
         onDeleteCard(key);
-    }
+    };
     return (
     <ul className={styles.container}>
         {cards.map(card => {

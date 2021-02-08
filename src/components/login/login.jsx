@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import logoImg from '../../images/business-cards.png';
 import styles from './login.module.css';
-import { Link, useHistory} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import Loading from '../loading/loading';
 
 const Login = (props) => {
@@ -59,7 +58,7 @@ const Login = (props) => {
             </div>
             <div className={styles.glass}>
                 <div className={styles.logo}>
-                    <img className={styles.logo_image} src={logoImg} alt="logo image"/>
+                    <img className={styles.logo_image} src="public/images/business-cards.png" alt="logo image"/>
                     <h1 className={styles.logo_title}>Business Card Maker</h1>
                 </div>
                 <div className={styles.login_btn}>

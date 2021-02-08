@@ -33,7 +33,7 @@ class Login {
         }
     }
     /**
-     * @returns {*} result of getRedirectResult()
+     * @returns {*} result of getRedirectResult() method
      * If it is success returns 'Success'
      * If error is occured return error object
      */

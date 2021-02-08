@@ -1,5 +1,4 @@
 import React, { useRef, memo } from 'react';
-import logoImg from '../../images/business-cards.png';
 import styles from './header.module.css';
 
 
@@ -17,7 +16,7 @@ const Header = memo(({ onAddBtn, onLogout }) => {
                 window.scroll({
                 top: document.body.scrollHeight,
                 behavior: 'smooth'
-              })}, 200);
+            })}, 200);
         }
         
     }
@@ -30,7 +29,7 @@ const Header = memo(({ onAddBtn, onLogout }) => {
             <div ref={addRef} className={styles.add_container}  onClick={handleAddBtn} id="header-add-btn-container">
                 <i className={`fas fa-plus ${styles.add_btn}`}></i>
             </div>
-            <img className={styles.logo_image} src={logoImg} alt="logo"/>
+            <img className={styles.logo_image} src="public/images/business-cards.png" alt="logo"/>
             <h1 className={styles.logo_title}>Business Card Maker</h1>
             
                 <div className={styles.logout_container}>
