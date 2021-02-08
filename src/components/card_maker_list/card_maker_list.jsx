@@ -6,9 +6,9 @@ const CardMakerList = ({ cards, onChangeInput, onDeleteCard, imageService}) => {
     const handleChangeInput = (property, key, value) => {
         onChangeInput(property, key, value);
     }
-    const handleDeleteCard = useCallback((key) => {
+    const handleDeleteCard = (key) => {
         onDeleteCard(key);
-    }, [key]);
+    };
     return (
     <ul className={styles.container}>
         {cards.map(card => {

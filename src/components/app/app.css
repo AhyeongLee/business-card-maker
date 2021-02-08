@@ -2,6 +2,7 @@
 
 html {
   height: 100%;
+  overflow-x: hidden;
 }
 body {
   height: 100%;
@@ -10,8 +11,8 @@ body {
     rgba(149, 202, 235, 1) 50%,
     rgba(232, 173, 162, 1) 100%
   );
-  overflow-x: hidden;
+  
 }
-body > div {
+body > #root {
   height: 100%;
 }
