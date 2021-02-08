@@ -37,3 +37,9 @@ yarn-error.log*
 ### Firebase Patch ###
 .runtimeconfig.json
 .firebase/
+
+# Dockerfile & Jenkinsfile
+Dockerfile
+Jenkinsfile
+
+dist*
