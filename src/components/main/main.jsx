@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../header/header';
 import Footer from '../footer/footer';
@@ -26,18 +26,18 @@ const Main = ({ loginService, databaseService, imageService }) => {
         }
         
 
-    }, []);
+    }, [loginService]);
 
     /**
      * Logout & Redirect to /login
      */
-    const handleLogout = () => {
+    const handleLogout = useCallback(() => {
         setIsWaiting(true);
         loginService.logout()
-          .then(() => {
-              history.push('/login');
-          });
-    }
+        .then(() => {
+            history.push('/login');
+        });
+    }, [loginService]);
 
     /**
      * @param {String} property - property of card object for change its value
@@ -67,7 +67,7 @@ const Main = ({ loginService, databaseService, imageService }) => {
      * Add a new card with default value
      * Get a key from DatabaseService.writeNewCard()
      */
-    const handleAddBtn = () => {
+    const handleAddBtn = useCallback(() => {
         const newCard = {
             photo: '',
             name: 'Gildong Hong', 
@@ -76,25 +76,25 @@ const Main = ({ loginService, databaseService, imageService }) => {
             email: 'aaa@notte.com',
             descriptions: 'descriptions...',
             theme: 'default',
-          };
+        };
         databaseService.writeNewCard(loginService.user.uid, newCard)
         .then(() => {
             const newCards = [...cards, newCard];
             setCards(newCards);
         });
-    }
+    }, [databaseService]);
 
     /**
      * @param {String} key - key of card to delete
      */
-    const handleDeleteCard = (key) => {
+    const handleDeleteCard = useCallback((key) => {
         databaseService.removeCard(loginService.user.uid, key)
         .then(() => {
             const newCards = cards.filter(card => card.key !== key);
             setCards(newCards);
         });
         
-    }
+    }, [databaseService]);
     return (
         <>
         {isWaiting ? 

@@ -16,7 +16,7 @@ const Header = memo(({ onAddBtn, onLogout }) => {
                 window.scroll({
                 top: document.body.scrollHeight,
                 behavior: 'smooth'
-              })}, 200);
+            })}, 200);
         }
         
     }
