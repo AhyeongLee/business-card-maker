@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../header/header';
 import Footer from '../footer/footer';
@@ -31,13 +31,13 @@ const Main = ({ loginService, databaseService, imageService }) => {
     /**
      * Logout & Redirect to /login
      */
-    const handleLogout = useCallback(() => {
+    const handleLogout = () => {
         setIsWaiting(true);
         loginService.logout()
         .then(() => {
             history.push('/login');
         });
-    }, [loginService]);
+    }
 
     /**
      * @param {String} property - property of card object for change its value
@@ -67,7 +67,7 @@ const Main = ({ loginService, databaseService, imageService }) => {
      * Add a new card with default value
      * Get a key from DatabaseService.writeNewCard()
      */
-    const handleAddBtn = useCallback(() => {
+    const handleAddBtn = () => {
         const newCard = {
             photo: '',
             name: 'Gildong Hong', 
@@ -82,19 +82,19 @@ const Main = ({ loginService, databaseService, imageService }) => {
             const newCards = [...cards, newCard];
             setCards(newCards);
         });
-    }, [databaseService]);
+    }
 
     /**
      * @param {String} key - key of card to delete
      */
-    const handleDeleteCard = useCallback((key) => {
+    const handleDeleteCard = (key) => {
         databaseService.removeCard(loginService.user.uid, key)
         .then(() => {
             const newCards = cards.filter(card => card.key !== key);
             setCards(newCards);
         });
         
-    }, [databaseService]);
+    };
     return (
         <>
         {isWaiting ? 
