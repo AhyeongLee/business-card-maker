@@ -3,7 +3,7 @@
 <br>
 이름, 회사 등 정보를 입력하면 명함 형태로 보여주는 반응형 웹 애플리케이션
 
-바로가기: [Business Card Maker](https://business-card-maker-35eba.web.app)
+바로가기: [Business Card Maker](https://aylee.shop)
 <br></br>
 <img src="screen_shots/desktop.png" max-width="800"><br>
 <br>
@@ -16,6 +16,8 @@
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#screen-shots">Screen Shots</a></li>
+    <li><a href="#functions">Functions</a></li>
+    <li><a href="#cicd">CICD</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
     <li><a href="#what-i-learned">What I Learned</a></li>
   </ol>
@@ -27,16 +29,22 @@
 </br>
 
 ## About The Project
+드림코딩 아카데미 React Basic 강의 마지막 과제.<br>
+`React` 라이브러리를 사용해서 개발했고 `webpack`과 `babel`을 세팅해서 빌드하고<br>
+`Jenkins`와 `CodeDeploy`를 이용하여 `AWS ECS`에 배포.
 
-드림코딩 아카데미 React Basic 강의 마지막 과제.
-React Hooks, PostCSS, React Router, Firebase 그리고 Cloudinary, 이렇게 강의에서 주어진 5가지 키워드와 데모를 보고 Solution 듣기 전에 개발.
-
-디자인, 애니메이션 효과는 내 마음대로 👻
 
 ## Skills
 
 - React JS
-- Html/CSS
+- React Router
+- Webpack
+- Babel
+- PostCSS
+- Firebase(Realtime Database, Authentication)
+- Cloudinary
+- AWS(ECS, CodeDeploy)
+- Docker
 
 ## Screen Shots
 
@@ -55,11 +63,36 @@ React Hooks, PostCSS, React Router, Firebase 그리고 Cloudinary, 이렇게 강
 - Write, Read, Update and Delete data in realtime
 - Upload image (drag & drop 으로도 가능)
 
-## APIs
+## CICD
+- Github
+- Jenkins
+  ### Jenkinsfile from Git
+  <img src="screen_shots/jenkinsfile.png" width="500"><br>
 
-- [Firebase](https://firebase.google.com/?hl=pt-br)
-  - Hosting, Realtime Database, Authentication
-- [Cloudinary](https://cloudinary.com/)
+  ### Jenkins Pipeline
+
+  <img src="screen_shots/jenkins-pipeline.png" width="500"><br>
+  ```
+  stages {
+    stage('Webpack Build') {
+      - npm install
+      - webpack build
+    }
+    stage('Dockerizing') {
+      - copy public, dist folder to server/
+      - docker image build & push to AWS ECR
+      - update ecs task definition
+    }
+    stage('Deploy') {
+      - craete appspec.yml & upload to s3
+      - create deployment(AWS CodeDeploy)
+      - wait while the deployment is complete
+    }
+  }
+  ```
+- AWS CodeDeploy
+
+  <img src="screen_shots/codedeploy.png" width="500"><br>
 
 ## Acknowledgements
 
