@@ -3,7 +3,7 @@
 <br>
 이름, 회사 등 정보를 입력하면 명함 형태로 보여주는 반응형 웹 애플리케이션
 
-바로가기: [Business Card Maker](https://business-card-maker-35eba.web.app)
+(요금 때문에 현재는 사이트를 닫아 놓은 상태)
 <br></br>
 <img src="screen_shots/desktop.png" max-width="800"><br>
 <br>
